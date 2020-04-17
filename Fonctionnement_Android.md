@@ -27,15 +27,18 @@ Android est constitué d'une pile de composants. Le sens de lecture s'effectue d
 
 ### a) Le Noyau Linux
 
-Il s'agit de la couche gérant le matériel de l'appareil mobile (écran, caméra, support de stockage, etc...). C'est elle qui va permettre aux logiciels embarqués dans l'appareil d'accéder à ces composants.
+Il s'agit de la couche gérant le matériel de l'appareil mobile (écran, caméra, support de stockage, etc...). C'est elle qui va permettre aux logiciels embarqués dans l'appareil d'accéder à ces composants. La version utilisée par Android a été élaborée spécialement pour un environnement mobile en se focalisant sur des aspects tels que la gestion énergétique (batterie) et de la mémoire. En résumé, c'est cette couche qui permet à Android d'être compatible avec un très grand nombre d'appareils aux configurations matérielles très différentes.
 
-La version utilisée par Android a été élaborée spécialement pour un environnement mobile en se focalisant sur des aspects tels que la gestion énergétique (batterie) et de la mémoire.
+### b) Couche d'abstraction matérielle ou Hardware Abstraction Layer (HAL)
 
-En résumé, c'est cette couche qui permet à Android d'être compatible avec un très grand nombre d'appareils aux configurations matérielles très différentes. 
-
+Cette couche se compose de plusieurs modules[4] d'une bibliothèque logicielle[5], chacun d'entre eux étant lié à un type spécifique de matériel comme la caméra ou le module bluetooth. Ainsi, lorsqu'une API[6] du framework[7] Java va demander à accéder au matériel de notre appareil, Android chargera le module correspondant au composant à utiliser. C'est cette couche qui permet à une application de s'adpater au matériel embarqué dans un appareil.
 
 
 [1] Parts de marché d'Android en 2019 :
-https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/ <br/>
+https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/<br/>
 [2] Le noyau est le cœur du système, c'est lui qui s'occupe de fournir aux logiciels une interface de programmation pour utiliser le matériel d'une machine.<br/>
-[3] https://developer.android.com/guide/platform/images/android-stack_2x.png
+[3] https://developer.android.com/guide/platform/images/android-stack_2x.png<br/>
+[4] https://fr.wikipedia.org/wiki/Module_(programmation)<br/>
+[5] https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle<br/>
+[6] https://fr.wikipedia.org/wiki/Interface_de_programmation<br/>
+[7] https://fr.wikipedia.org/wiki/Framework<br/>
