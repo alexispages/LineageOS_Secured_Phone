@@ -31,8 +31,9 @@ Il s'agit de la couche gérant le matériel de l'appareil mobile (écran, camér
 
 ### b) Couche d'abstraction matérielle ou Hardware Abstraction Layer (HAL)
 
-Cette couche se compose de plusieurs modules[4] d'une bibliothèque logicielle[5], chacun d'entre eux étant lié à un type spécifique de matériel comme la caméra ou le module bluetooth. Ainsi, lorsqu'une API[6] du framework[7] Java va demander à accéder au matériel de notre appareil, Android chargera le module correspondant au composant à utiliser. C'est cette couche qui permet à une application de s'adpater au matériel embarqué dans un appareil.
+Cette couche se compose de plusieurs modules[4] d'une bibliothèque logicielle[5], chacun d'entre eux étant lié à un type spécifique de matériel comme la caméra ou le module bluetooth. Ainsi, lorsqu'une API[6] du framework[7] Java va demander à accéder au matériel de notre appareil, Android chargera le module correspondant au composant à utiliser. C'est cette couche qui permet à une application de s'adpater au matériel embarqué dans un appareil. 
 
+En réalité, le noyau Linux fournit déjà une compatibilité avec le matériel embarqué. L'objectif pour Google en ayant rajouté cette couche est de "sécuriser" le système en rendant privé le code source permettant d'exploiter le matériel d'un appareil. Cette solution permet notamment à Android de s'affranchir de la license open source imposé par l'utilisation du noyau Linux. Ce dernier constituait déjà une HAL et à longtemps été utilisé sans cette couche supplémentaire mais la volonté de Google est désormais d'éviter au maximum son utilisation.
 
 [1] Parts de marché d'Android en 2019 :
 https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/<br/>
