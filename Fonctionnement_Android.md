@@ -36,6 +36,6 @@ En résumé, c'est cette couche qui permet à Android d'être compatible avec un
 
 
 [1] Parts de marché d'Android en 2019 :
-https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
-[2] Le noyau est le cœur du système, c'est lui qui s'occupe de fournir aux logiciels une interface de programmation pour utiliser le matériel d'une machine.
+https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/ <br/>
+[2] Le noyau est le cœur du système, c'est lui qui s'occupe de fournir aux logiciels une interface de programmation pour utiliser le matériel d'une machine.<br/>
 [3] https://developer.android.com/guide/platform/images/android-stack_2x.png
