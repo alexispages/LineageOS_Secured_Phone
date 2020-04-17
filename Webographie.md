@@ -9,3 +9,7 @@
 - https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
 - https://openclassrooms.com/fr/courses/2023346-creez-des-applications-pour-android/2029414-larchitecture-dandroid
 - http://igm.univ-mlv.fr/~masson/v2/Teachings/EIG-2022-P3/intro.pdf
+- https://fr.wikipedia.org/wiki/Module_(programmation)
+- https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle
+- https://fr.wikipedia.org/wiki/Interface_de_programmation
+- https://fr.wikipedia.org/wiki/Framework
