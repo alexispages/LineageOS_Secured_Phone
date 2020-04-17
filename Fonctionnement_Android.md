@@ -21,7 +21,21 @@ La déclinaison la plus basique (la plus "pure") se nomme Android Stock, c’est
 
 En conclusion, on peut dire qu'Android s'est placé en véritable leader du marché des systèmes d'exploitation pour appareils mobiles (téléphones et tablettes), en proposant une expérience basée sur une interface modulable capable de correspondre au plus grand nombre.
 
+## II) L'architecture d'Android
+
+Android est constitué d'une pile de composants. Le sens de lecture s'effectue de bas en haut. Nous allons analyser par la suite l'ensemble des couches composant le système Android[3].
+
+### a) Le Noyau Linux
+
+Il s'agit de la couche gérant le matériel de l'appareil mobile (écran, caméra, support de stockage, etc...). C'est elle qui va permettre aux logiciels embarqués dans l'appareil d'accéder à ces composants.
+
+La version utilisée par Android a été élaborée spécialement pour un environnement mobile en se focalisant sur des aspects tels que la gestion énergétique (batterie) et de la mémoire.
+
+En résumé, c'est cette couche qui permet à Android d'être compatible avec un très grand nombre d'appareils aux configurations matérielles très différentes. 
+
+
 
 [1] Parts de marché d'Android en 2019 :
 https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
 [2] Le noyau est le cœur du système, c'est lui qui s'occupe de fournir aux logiciels une interface de programmation pour utiliser le matériel d'une machine.
+[3] https://developer.android.com/guide/platform/images/android-stack_2x.png
