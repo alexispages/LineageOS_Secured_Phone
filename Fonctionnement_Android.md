@@ -35,11 +35,63 @@ Cette couche se compose de plusieurs modules[4] d'une bibliothèque logicielle[5
 
 En réalité, le noyau Linux fournit déjà une compatibilité avec le matériel embarqué. L'objectif pour Google en ayant rajouté cette couche est de "sécuriser" le système en rendant privé le code source permettant d'exploiter le matériel d'un appareil. Cette solution permet notamment à Android de s'affranchir de la license open source imposé par l'utilisation du noyau Linux. Ce dernier constituait déjà une HAL et à longtemps été utilisé sans cette couche supplémentaire mais la volonté de Google est désormais d'éviter au maximum son utilisation.
 
-[1] Parts de marché d'Android en 2019 :
-https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/<br/>
-[2] Le noyau est le cœur du système, c'est lui qui s'occupe de fournir aux logiciels une interface de programmation pour utiliser le matériel d'une machine.<br/>
-[3] https://developer.android.com/guide/platform/images/android-stack_2x.png<br/>
-[4] https://fr.wikipedia.org/wiki/Module_(programmation)<br/>
-[5] https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle<br/>
-[6] https://fr.wikipedia.org/wiki/Interface_de_programmation<br/>
-[7] https://fr.wikipedia.org/wiki/Framework<br/>
+### c) Le moteur d'exécution d'Android
+
+Il s'agit d'un élément crutial du système car c'est ce dernier qui va permettre d'exécuter des applications basée sur le langage de programmation Java et certains services système d'Android. Ce moteur d'exécution se divise en deux parties : un environnement d'exécution des applications, et des bibliothèques de base (Core libraries) sur lesquelles nous reviendrons dans un second temps.
+
+#### *L'environnement d'exécution*
+
+Afin d'exécuter des applications en Java, il existe un outil qui se nomme *Java Runtime Environment* (ou Envrionnement d'exécution Java en français). En outre, ce dernier n'est pas adapté à un environnement mobile et possède de nombreuses fonctionnalités inadaptées. L'enjeu majeur lors du développement d'Android a donc été de développer un environnement d'exécution optimisé pour mieux gérer les ressources physiques du système. L'objectif était de laisser moins d'empreinte mémoire[8] (la quantité de mémoire allouée à une application pendant son exécution) ou d'utiliser moins de batterie.
+
+C'est ainsi qu'est née la machine virtuelle[9] Dalvik, spécialement développée pour les systèmes embarqués.
+
+Schéma du fonctionnement de Dalvik [10]
+
+Le schéma ci-dessus explique le processus de construction d'une application avec Dalvik. Dans un premier temps, le développeur va produire un fichier *.java* contenant une suited'instructions dans le langage de programmation Java. Ce fichier va ensuite être traduit dans un second langage que l'on appelle *bytecode* qui sera contenu à son tour dans un fichier *.class*. On pourra par la suite regrouper différents fichiers *.class* en un fichier *.jar* qui sera exécutable dans l'environement d'exécution Java. Or, la machine virtuelle Dalvik possède son propre bytecode. Il est donc nécessaire de convertir le *bytecode Java* en *bytecode Dalvik* (création d'un fichier *.dex*) afin de pouvoir exécuter une application sur Android.
+
+L'avantage majeur de Dalvik réside dans la gestion des processus[11]. L'objectif va être d'isoler chacun des processus les uns par rapport aux autres en associant un processus à une machine virtuelle. Par ce biais, si un processus dysfonctionne, les autres ne vont pas être impactés. Ainsi, chaque processus est protégé des autres ce qui renforce la protection du système.
+
+À partir de la version 5.0 d'Android (sortie en 2014), Dalvik a été remplacée par l'*Android Runtime* (ART) qui permet de transcrire le *bytecode java* directement en langage machine[12]. Les gains apportés en performance et en autonomie des batteries sont conséquents avec une augmentation de 20 à 30%. En contre-partie, la taille des applications augmente de 20%.
+
+Il ne manque plus qu'une étape avant d'exécuter une application : le manifest. Ce dernier contient diverses informations sur l'application notamment les autorisations dont l'application a besoin pour accéder à des parties protégées du système (accès au stockage, à la caméra, à la géolocalisation etc...) ou à d'autres applications. Il déclare également les autorisations que les autres applications doivent avoir pour accéder au contenu de cette application. Il recense également les fonctionnalités matérielles et logicielles requises par l'application, ce qui affecte les appareils pouvant installer l'application à partir de Google Play. Par exemple, si votre appareil dispose d'une version trop ancienne d'Android, il ne pourra pas installer certaines applications.
+
+En ajoutant ce manifest au langage machine obtenu lors de la dernière étape du processus de construction d'une application, l'environnement d'exécution d'Android (ART) va ainsi pouvoir exécuter notre application qui sera désormais au format *.apk*.
+
+#### *Les "Bibliothèques de base" (Core Libraries)*
+
+Les *Core Libraries* d'Android sont constituées d'une copie des *Core Librairies* de Java 8 (les versions postérieures n'étant pas supportées par Android) et d'un ensemble de bibliothèques basée sur Java spécifiques au développement d'Android. Voici les principales biliothèques de base que l'on peut trouver dans cet ensemble :
+- **android.app** - Fournit un accès au modèle d'application et constitue la pierre angulaire de toutes les applications Android.
+- **android.content** - Facilite l'accès au contenu, la publication et la communication entre les applications et les composants d'application.
+- **android.database** - Utilisé pour accéder aux données publiées par les fournisseurs de contenu et comprend des classes de gestion de base de données[13] *SQLite*.
+- **android.graphics** - API de dessin graphique en 2D comprenant des couleurs, des points, des filtres, des rectangles et des canvas[14].
+- **android.hardware** - API permettant d'accéder à du matériel tel que l'accéléromètre et le capteur de lumière.
+- **android.opengl** - Interface Java pour piloter l'API de rendu graphique en 3D *OpenGL ES*.
+- **android.os** - Fournit aux applications l'accès aux services standard du système d'exploitation, notamment les messages, les services système et la communication entre les processus.
+- **android.media** - Fournit des classes[15] pour permettre la lecture de fichiers audio et vidéo.
+- **android.net** - Un ensemble d'API donnant accès à la partie réseau. Comprend android.net.wifi, qui permet d'accéder à la partie réseau sans fil de l'appareil.
+- **android.print** - Comprend un ensemble de classes qui permettent d'envoyer du contenu à des imprimantes configurées à partir d'applications Android.
+-  **android.provider** - Un ensemble de classes qui permettent d'accéder aux bases de données standard des fournisseurs de contenu Android notamment celles gérées par les applications de calendrier et de contact.
+-  **android.text** - Utilisé pour présenter et manipuler du texte sur l'écran d'un appareil.
+-  **android.util** - Ensemble de classes d'utilitaires permettant d'effectuer des tâches telles que la conversion de chaînes de caractères ou de nombres, le traitement XML[16] et la manipulation de la date et de l'heure.
+- **android.view** - Fournit les éléments de base des interfaces utilisateur des applications.
+-  **android.widget** - Un ensemble de composants d'interface utilisateur pré-construits tels que des boutons, des étiquettes, des listes, des gestionnaires de mise en page, des boutons radio, etc...
+- **android.webkit** - Un ensemble de classes destinées à permettre l'intégration de fonctions de navigation sur le web dans les applications.
+
+## Lexique + Images
+- [1] Parts de marché d'Android en 2019 :
+https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
+- [2] https://fr.wikipedia.org/wiki/Noyau_Linux
+- [3] https://developer.android.com/guide/platform/images/android-stack_2x.png
+- [4] https://fr.wikipedia.org/wiki/Module_(programmation)
+- [5] https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle
+- [6] https://fr.wikipedia.org/wiki/Interface_de_programmation
+- [7] https://fr.wikipedia.org/wiki/Framework
+- [8] https://fr.wikipedia.org/wiki/M%C3%A9moire_vive
+- [9] https://fr.wikipedia.org/wiki/Machine_virtuelle
+- [10] https://user.oc-static.com/files/322001_323000/322271.png
+- [11] https://fr.wikipedia.org/wiki/Processus_(informatique)
+- [12] https://en.wikipedia.org/wiki/Machine_code
+- [13] https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es
+- [14] https://en.wikipedia.org/wiki/Canvas_(GUI)
+- [15] https://en.wikipedia.org/wiki/Class_(computer_programming)
+- [16] https://fr.wikipedia.org/wiki/Extensible_Markup_Language
