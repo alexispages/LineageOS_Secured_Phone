@@ -77,6 +77,14 @@ Les *Core Libraries* d'Android sont constituées d'une copie des *Core Librairie
 -  **android.widget** - Un ensemble de composants d'interface utilisateur pré-construits tels que des boutons, des étiquettes, des listes, des gestionnaires de mise en page, des boutons radio, etc...
 - **android.webkit** - Un ensemble de classes destinées à permettre l'intégration de fonctions de navigation sur le web dans les applications.
 
+### d) Bibliothèques C/C++
+
+Les bibliothèques de base d'Android que nous venons de décrire dans la partie précédente sont basées sur Java et fournissent les API principales pour les développeurs qui écrivent des applications Android. Il est important de noter que les bibliothèques de base n'effectuent pas une grande partie du travail réel et constituent, en réalité essentiellement un élément central écrit en Java autour duquel s'inscrit un ensemble de bibliothèques basées sur les langages de programmation C et C++. Lorsque l'on fait appel, par exemple, à la bibliothèque android.opengl pour afficher des graphismes en 3D sur l'écran de l'appareil, la bibliothèque fait en fait appel à la bibliothèque C++ OpenGL ES qui, à son tour, travaille avec les couches sous-jacentes (HAL et noyau Linux) pour effectuer les tâches d'affichage.
+
+Les bibliothèques C/C++ sont incluses pour remplir un large éventail de fonctions diverses, notamment l'affichage graphique en 2D et 3D, la communication TLS/SSL[17], la gestion de bases de données SQLite, la lecture audio et vidéo, le rendu de polices d'écriture bitmap et vectorielles, la gestion des sous-systèmes d'affichage et des couches graphiques et une implémentation de la bibliothèque système C standard (libc)[18].
+
+En pratique, le développeur d'applications Android typique accédera à ces bibliothèques uniquement par le biais des API de la bibliothèque centrale d'Android basée sur Java. Si un accès direct à ces bibliothèques est nécessaire, il peut être réalisé en utilisant l'Android Native Development Kit (NDK) dont le but est d'appeler les méthodes natives des langages de programmation non Java ou Kotlin (tels que C et C++) à partir du code Java en utilisant l'interface native Java (JNI).
+
 ## Lexique + Images
 - [1] Parts de marché d'Android en 2019 :
 https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
@@ -95,3 +103,5 @@ https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-march
 - [14] https://en.wikipedia.org/wiki/Canvas_(GUI)
 - [15] https://en.wikipedia.org/wiki/Class_(computer_programming)
 - [16] https://fr.wikipedia.org/wiki/Extensible_Markup_Language
+- [17] https://en.wikipedia.org/wiki/Transport_Layer_Security
+- [18] https://en.wikipedia.org/wiki/C_standard_library
