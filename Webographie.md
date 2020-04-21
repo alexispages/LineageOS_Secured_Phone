@@ -46,3 +46,17 @@
 - https://en.wikipedia.org/wiki/Canvas_(GUI)
 - https://en.wikipedia.org/wiki/Class_(computer_programming)
 - https://fr.wikipedia.org/wiki/Extensible_Markup_Language
+
+## Consulté le 21 Avril
+
+### Libraries C/C++
+
+- https://www.techotopia.com/index.php/An_Overview_of_the_Android_Architecture#.EF.BB.BFAndroid_Libraries.EF.BB.BF
+- https://en.wikipedia.org/wiki/Transport_Layer_Security
+- https://en.wikipedia.org/wiki/C_standard_library
+
+### Framework API Java
+
+- https://www.techotopia.com/index.php/An_Overview_of_the_Android_Architecture#.EF.BB.BFAndroid_Libraries.EF.BB.BF
+- https://www.youtube.com/watch?v=rBZONhEen98
+- https://opensourceforu.com/2013/12/birds-eye-view-android-system-services/
