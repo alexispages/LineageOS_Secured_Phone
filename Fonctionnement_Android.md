@@ -85,6 +85,33 @@ Les bibliothèques C/C++ sont incluses pour remplir un large éventail de foncti
 
 En pratique, le développeur d'applications Android typique accédera à ces bibliothèques uniquement par le biais des API de la bibliothèque centrale d'Android basée sur Java. Si un accès direct à ces bibliothèques est nécessaire, il peut être réalisé en utilisant l'Android Native Development Kit (NDK) dont le but est d'appeler les méthodes natives des langages de programmation non Java ou Kotlin (tels que C et C++) à partir du code Java en utilisant l'interface native Java (JNI).
 
+### e) Framework API Java
+
+Le cadre d'application (*framework* en anglais) est un ensemble de services qui forment collectivement l'environnement dans lequel les applications Android fonctionnent et sont gérées. Ce cadre met en œuvre le concept selon lequel les applications Android sont construites à partir de composants réutilisables, interchangeables et remplaçables. Ce concept est poussé plus loin en ce sens qu'une application est également capable de publier ses capacités ainsi que toutes les données correspondantes afin qu'elles puissent être trouvées et réutilisées par d'autres applications.
+
+#### Qu'est-ce qu'un service ?
+
+Un service est un composant d'application qui peut effectuer des opérations de longue durée en arrière-plan, et il ne fournit pas d'interface utilisateur. Un autre composant d'application peut démarrer un service, et il continue à fonctionner en arrière-plan même si l'utilisateur passe à une autre application. Un service peut traiter des transactions réseau, jouer de la musique, effectuer des déplacements de fichiers ou interagir avec un fournisseur de contenu, le tout en arrière-plan. Les services système jouent un rôle clé en exposant les fonctions de bas niveau du matériel et du noyau Linux aux applications de haut niveau. Les services système sont actifs du démarrage au redémarrage, c'est-à-dire pendant toute la durée de vie du système.
+
+Il existe 3 types de services :
+
+- **Premier plan** - Un service de premier plan effectue une opération qui est perceptible par l'utilisateur. Par exemple, une application audio utiliserait un service d'avant-plan pour lire une piste audio. Les services d'avant-plan doivent afficher une notification. Les services d'avant-plan continuent de fonctionner même lorsque l'utilisateur n'interagit pas avec l'application.
+- **Arrière-plan** - Un service d'arrière-plan effectue une opération qui n'est pas directement remarquée par l'utilisateur. Par exemple, si une application utilise un service pour compacter son stockage, il s'agit généralement d'un service d'arrière-plan.
+- **Relié** - Un service est lié lorsqu'un composant d'application se lie à lui en appelant la fonction bindService(). Un service lié offre une interface client-serveur qui permet aux composants d'interagir avec le service, d'envoyer des demandes et de recevoir des résultats. Un service lié ne fonctionne que tant qu'un autre composant de l'application lui est lié. Plusieurs composants peuvent se lier au service en même temps, mais lorsque tous se délient, le service est détruit.
+
+#### Les services du framework
+
+Le framework d'Android comprend les principaux services suivants :
+
+- **Activity Manager** - Contrôle tous les aspects du cycle de vie des applications et de leurs activités.
+- **Fournisseurs de contenu** - Permet aux applications de publier et de partager des données avec d'autres applications.
+- **Gestionnaire de ressources** - Fournit l'accès aux ressources intégrées non codées telles que les chaînes de caractères, les paramètres de couleur et la disposition de l'interface utilisateur.
+- **Gestionnaire de notifications** - Permet aux applications d'afficher des alertes et des notifications à l'utilisateur.
+- **Système de visualisation** - Ensemble extensible d'éléments visuels utilisées pour créer les interfaces utilisateur des applications.
+- **Gestionnaire de paquets** - Système permettant aux applications de trouver des informations sur d'autres applications actuellement installées sur l'appareil.
+- **Gestionnaire de téléphonie** - Fournit à l'application des informations sur les services de téléphonie disponibles sur l'appareil, comme le statut et les informations sur l'abonné.
+- **Gestionnaire de localisation** - Fournit l'accès aux services de localisation permettant à une application de recevoir des mises à jour sur les changements de localisation.
+
 ## Lexique + Images
 - [1] Parts de marché d'Android en 2019 :
 https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
