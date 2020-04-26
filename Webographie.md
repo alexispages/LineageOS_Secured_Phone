@@ -66,3 +66,14 @@
 - https://www.youtube.com/watch?v=rBZONhEen98
 - https://opensourceforu.com/2013/12/birds-eye-view-android-system-services/
 - https://developer.android.com/guide/components/services
+
+## Consulté le 26 Avril
+
+### Applications
+- https://www.techotopia.com/index.php/An_Overview_of_the_Android_Architecture#.EF.BB.BFAndroid_Libraries.EF.BB.BF
+- https://www.youtube.com/watch?v=rBZONhEen98
+- https://android.googlesource.com/platform/packages/apps
+- https://en.wikipedia.org/wiki/Superuser
+- https://developer.android.com/ndk
+- https://www.androidpit.com/best-google-play-store-alternative-app-stores
+- https://f-droid.org/fr/
