@@ -112,6 +112,31 @@ Le framework d'Android comprend les principaux services suivants :
 - **Gestionnaire de téléphonie** - Fournit à l'application des informations sur les services de téléphonie disponibles sur l'appareil, comme le statut et les informations sur l'abonné.
 - **Gestionnaire de localisation** - Fournit l'accès aux services de localisation permettant à une application de recevoir des mises à jour sur les changements de localisation.
 
+### f) Les applications
+
+Les applications sont situées au sommet de la pile logicielle d'Android. Elles comprennent à la fois les applications natives fournies avec l'implémentation particulière d'Android (par exemple le navigateur web et les applications de messagerie), les applications apportées par le constructeur, les applications pré-installées, les applications fournies par l'opérateur et les applications tierces installées par l'utilisateur après l'achat de l'appareil. Au-delà de l'ensemble des couches que nous avons vu précédemment, c'est de loin celle des applications qui demeure la plus importante car c'est celle à laquelle l'utilisateur est directement confronté.
+
+#### Applications système
+
+La version "pure" d'Android, c'est à dire celle de base fournie par Google contient ainsi de nombreuses applications comme un dialer afin de composer un numéro, un calendrier, une application pour gérer les caméras embarquées au sein de l'appareil ou encore une application pour gérer ses emails, etc...
+On peut distinguer deux types d'applications fournies avec Android : celle dont le code source est accessible[19] et celle dont le code source est protégé (Exemples : Google Maps, Gmail, Google photos). Toutes ces applications ne peuvent être désinstallées d'un appareil tant que l'on ne dispose pas d'un accès superutilisateur[20].
+
+#### Applications constructeurs
+
+Certains constructeurs, comme Samsung, fournissent leur propre application pour la lecture de musique ou d'agenda et c'est la raison pour laquelle on se retrouve avec des applications doublon sur un smartphone. 
+
+#### Applications pré-installées
+
+Également, certains constructeurs réalisent des partenariats avec des marques et disposent ainsi d'applications comme le pack Office pré-installées sur leurs appareils. Cela peut être gênant si de très nombreuses applications sont pré-installées comme des jeux à titre d'exemple. Néanmois, on pourra désinstaller l'ensemble de ces applications sans problèmes.
+
+#### Applications opérateur
+
+Si le smartphone a été acheté chez un opérateur, il sera accompagné d'applications installées par ce dernier permettant de suivre sa consommation de données, de gérer certaines fonctionnalités de sa box, etc...
+
+#### Applications tierces
+
+Il s'agit de l'ensemble des applications que l'utilisateur va pouvoir installer en plus de celles déjà présentes sur l'appareil. Le Google Play Store est généralement le lieu de prédilection pour installer de nouvelles applications Android, mais ce n'est pas le seul ! Bien que Google n'autorise pas le téléchargement d'autres magasins d'applications à partir du Google Play Store lui-même, il est tout de même possible de les obtenir en autorisant les applications provenant de sources inconnues. On peut tout à fait utiliser un store d'applications alternatif comme F-Droid[21], un magasin d'applications financés par des dons et dont les applications sont toutes Open Source et gratuites.
+
 ## Lexique + Images
 - [1] Parts de marché d'Android en 2019 :
 https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
@@ -132,3 +157,7 @@ https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-march
 - [16] https://fr.wikipedia.org/wiki/Extensible_Markup_Language
 - [17] https://en.wikipedia.org/wiki/Transport_Layer_Security
 - [18] https://en.wikipedia.org/wiki/C_standard_library
+- [19] Liste des applications Open Source fournies par Google sur Android :
+https://android.googlesource.com/platform/packages/apps
+- [20] https://en.wikipedia.org/wiki/Superuser
+- [21] https://f-droid.org/fr/
