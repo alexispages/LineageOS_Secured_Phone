@@ -77,3 +77,14 @@
 - https://developer.android.com/ndk
 - https://www.androidpit.com/best-google-play-store-alternative-app-stores
 - https://f-droid.org/fr/
+
+## Consulté le 27 Avril
+
+### File system et points de montage
+- https://www.cnblogs.com/shangdawei/p/4513604.html
+- https://techblogon.com/android-file-system-structure-architecture-layout-details/
+- https://www.androidauthority.com/phone-storage-folders-explained-744100/
+- http://wiki.robotz.com/index.php/Android_File_System
+- https://android.tutorials.how/android-file-system/
+- https://source.android.com/devices/storage
+- https://fr.wikipedia.org/wiki/Point_de_montage
