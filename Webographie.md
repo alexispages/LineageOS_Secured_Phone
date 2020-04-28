@@ -88,3 +88,23 @@
 - https://android.tutorials.how/android-file-system/
 - https://source.android.com/devices/storage
 - https://fr.wikipedia.org/wiki/Point_de_montage
+
+## Consulté le 28 Avril
+
+### File system et points de montage
+- https://www.cnblogs.com/shangdawei/p/4513604.html
+- https://techblogon.com/android-file-system-structure-architecture-layout-details/
+- https://www.androidauthority.com/phone-storage-folders-explained-744100/
+- http://wiki.robotz.com/index.php/Android_File_System
+- https://android.tutorials.how/android-file-system/
+- https://source.android.com/devices/storage
+- https://fr.wikipedia.org/wiki/Point_de_montage
+- https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_fichiers
+- https://en.wikipedia.org/wiki/Operating_system
+- https://en.wikipedia.org/wiki/MultiMediaCard
+- https://en.wikipedia.org/wiki/Universal_Flash_Storage
+- https://fr.wikipedia.org/wiki/Partition_(informatique)
+- https://techblogon.com/wp-content/uploads/2019/04/partition-size-in-android-device1.jpg
+- https://overclocking.com/quest-ce-quun-ramdisk/
+- https://source.android.com/devices/tech/config/carrierid
+
