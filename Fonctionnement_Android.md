@@ -137,6 +137,58 @@ Si le smartphone a été acheté chez un opérateur, il sera accompagné d'appli
 
 Il s'agit de l'ensemble des applications que l'utilisateur va pouvoir installer en plus de celles déjà présentes sur l'appareil. Le Google Play Store est généralement le lieu de prédilection pour installer de nouvelles applications Android, mais ce n'est pas le seul ! Bien que Google n'autorise pas le téléchargement d'autres magasins d'applications à partir du Google Play Store lui-même, il est tout de même possible de les obtenir en autorisant les applications provenant de sources inconnues. On peut tout à fait utiliser un store d'applications alternatif comme F-Droid[21], un magasin d'applications financés par des dons et dont les applications sont toutes Open Source et gratuites.
 
+## III) Système de fichiers et points de montage
+
+### Qu'est-ce qu'un système de fichiers ?
+
+Dans notre cas, le terme *système de fichiers* désigne l'organisation hiérarchique des fichiers au sein d'un système d'exploitation[22]. De façon générale, un système de fichiers est une façon de stocker les informations et de les organiser dans des fichiers sur ce que l'on appelle des mémoires secondaires (pour un smartphone, il s'agira d'une mémoire eMMC[23], UFS[24] ou d'une carte SD). Une telle gestion des fichiers permet de traiter et de conserver des quantités importantes de données ainsi que de les partager entre plusieurs programmes informatiques. Il offre à l'utilisateur une vue abstraite sur ses données et permet de les localiser à partir d'un chemin d'accès.
+
+### Qu'est-ce qu'un point de montage ?
+
+Un point de montage est un dossier permettant d'accéder au contenu d'une partition[25] d'un support de stockage ou simplement à l'intégralité du support de stockage en lui même.
+
+### Structure du système de fichier d'Android
+
+Android utilise plusieurs partitions pour organiser les fichiers et dossiers sur un appareil. On retrouve principalement 6 partitions sur un appareil Android. On donnera ci-dessous la liste des partitions pour le système de fichiers Android. On pourra noter toutefois qu'il peut y avoir d'autres partitions disponibles, différant d'un modèle à l'autre. En outre, les 6 partitions ci-dessous peuvent être trouvées sur n'importe quel appareil Android : 
+
+Schéma des différentes partitions sur Android [26]
+
+S'ajoute à ces partitions celle d'un éventuel support de stockage supplémentaire comme un carte SD ce qui nous donne ceci :
+
+- **/boot**
+- **/system**
+- **/recovery**
+- **/data**
+- **/cache**
+- **/misc**
+- **/sdcard** ou **/sd-ext** selon les appareil
+
+### Détail des points de montage sur Android
+
+- #### /boot
+C'est la partition de démarrage d'un appareil Android sans laquelle le système est incapable de démarrer. Elle comprend le noyau Linux utilisé par Android ainsi qu'un *RAMDisk*. Il s'agit d'un disque virtuel, c’est à dire un élément considéré comme un disque de stockage par Android mais qui n’en est pas un. En réalité, ce "disque" est composé d'une partie de la mémoire vive[8] de l'appareil afin d'obtenir un démarrage le plus rapide possible.
+
+- #### /system
+Comme son nom l'indique, cette partition contient l'intégralité du système d'exploitation Android, à l'exception des deux éléments présentés précédemment. Cela inclut l'interface graphique[28] d'Android et toutes les applications système préinstallées sur l'appareil. L'effacement de cette partition supprimera Android de l'appareil mais ce dernier pourra tout de même démarrer en mode récupération pour installer un nouveau système.
+
+- #### /recovery
+La partition de restauration est spécialement conçue pour la sauvegarde. Elle peut être considérée comme une partition de démarrage alternative, permettant d'effectuer des opérations de récupération et de maintenance avancées.
+
+- #### /data
+Il s'agit de la partition de données utilisateur. Elle contient les données de l'utilisateur comme les contacts, sms, paramètres et toutes les applications Android installées par l'utilisateur. Lorsque l'on effectue une réinitialisation de l'appareil, c'est cette partition est effacée.
+
+- #### /cache
+La partition de *cache* est celle où Android stocke les données et les composants d'applications fréquemment utilisés afin d'y accéder plus rapidement. L'effacement du cache n'affecte pas les données personnelles mais élimine simplement les données qui s'y trouvent. Elles se remplira à nouveau en utilisant l'appareil.
+
+- #### /misc
+Cette partition contient divers réglages du système sous forme d'options activées/désactivées. Ces paramètres peuvent inclure le CID (Carrier or Region ID) qui représente l'identifiant de l'opérateur, la configuration USB et certains paramètres matériels, etc... Il s'agit d'une partition importante. En effet, si cette dernière est corrompue ou manquante, plusieurs des fonctions de l'appareil ne fonctionneront pas normalement.
+
+- #### /sdcard
+Elle ne fait pas partie de la mémoire interne de l'appareil. Il s'agit de l'espace de stockage d'une carte SD que l'utilisateur peut utiliser de la manière qu'il souhaite. On peut y stocker documents, photos, vidéos, données des applications, etc... L'effacer est parfaitement sûr, à condition d'avoir préalablement sauvegarder les données qui y étaient présentes. Si certaines applications envoyaient leurs données sur cet espace de stockage, elles seront perdues.
+
+- #### /sd-ext
+Ce n'est pas une partition Android standard, mais elle apparaît à l'utilisation de systèmes d'exploitation alternatifs comme LineageOS. Il s'agit en fait d'une partition **/data** supplémentaire sur la carte SD permettant d'augmenter l'espace de stockage pour l'utilisateur sur des appareils ayant peu de mémoire interne allouée à la partition /data.
+
 ## Lexique + Images
 - [1] Parts de marché d'Android en 2019 :
 https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
@@ -161,3 +213,11 @@ https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-march
 https://android.googlesource.com/platform/packages/apps
 - [20] https://en.wikipedia.org/wiki/Superuser
 - [21] https://f-droid.org/fr/
+- [22] https://en.wikipedia.org/wiki/Operating_system
+- [23] https://en.wikipedia.org/wiki/MultiMediaCard
+- [24] https://en.wikipedia.org/wiki/Universal_Flash_Storage
+- [25] https://fr.wikipedia.org/wiki/Partition_(informatique)
+- [26] https://techblogon.com/wp-content/uploads/2019/04/partition-size-in-android-device1.jpg
+- [27] https://overclocking.com/quest-ce-quun-ramdisk/
+- [28] https://en.wikipedia.org/wiki/Graphical_user_interface
+
