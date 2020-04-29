@@ -107,4 +107,14 @@
 - https://techblogon.com/wp-content/uploads/2019/04/partition-size-in-android-device1.jpg
 - https://overclocking.com/quest-ce-quun-ramdisk/
 - https://source.android.com/devices/tech/config/carrierid
+- https://en.wikipedia.org/wiki/Graphical_user_interface
 
+## Consulté le 29 Avril
+
+### File system
+- http://wiki.robotz.com/index.php/Android_File_System
+- https://android.tutorials.how/android-file-system/
+- https://en.wikipedia.org/wiki/F2FS
+- https://en.wikipedia.org/wiki/Ext4
+- https://fr.wikipedia.org/wiki/M%C3%A9moire_flash
+- https://fr.wikipedia.org/wiki/Virtual_FAT
