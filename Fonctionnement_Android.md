@@ -189,6 +189,19 @@ Elle ne fait pas partie de la mémoire interne de l'appareil. Il s'agit de l'esp
 - #### /sd-ext
 Ce n'est pas une partition Android standard, mais elle apparaît à l'utilisation de systèmes d'exploitation alternatifs comme LineageOS. Il s'agit en fait d'une partition **/data** supplémentaire sur la carte SD permettant d'augmenter l'espace de stockage pour l'utilisateur sur des appareils ayant peu de mémoire interne allouée à la partition /data.
 
+### Type de système de fichiers
+
+Il existe de nombreux système de fichiers qui peuvent être utilisés selon diverses carcatéristiques telles que le système d'exploitation ou la taille maximale des fichiers pouvant être stocké par exemple. Dans le cas d'Android, de nombreux systèmes de fichiers peuvent être utilisé du fait que le système repose sur le noyau Linux. De plus, certains fabricants ont adopté leur propre système de fichiers sur leurs appareils à l'image de Samsung qui utilise F2FS[29] sur certains de ses modèles.
+
+Voici la liste non exaustive des systèmes de fichiers pouvant être utilisés sous Android pour la mémoire interne :
+- **EXT2/EXT3/EXT4** : Ext signifie EXTended file systems. Ce sont les standards de système de fichiers utilisés sur Linux. Le dernier en date est l'EXT4[30] qui succède à JFFS2 et YAFFS à partir de la version 2.3.
+- Créé par Microsoft pour les dispositifs à mémoire flash[31], le système de fichiers **exFAT** *(table d'allocation de fichiers étendue en français)* ne fait pas partie du noyau Linux standard. Cependant, il fournit un support pour les appareils Android dans certains cas.
+
+Concernant les dispositif de stockage amovibles (carte SD notamment), il existe également une liste de systèmes de fichiers compatibles : 
+- **EXT2/EXT3/EXT4** On utilise là aussi l'EXT4
+- **VFAT** (Virtual FAT[32]) qui est très souvent utilisé sur les cartes SD
+
+
 ## Lexique + Images
 - [1] Parts de marché d'Android en 2019 :
 https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
@@ -220,4 +233,7 @@ https://android.googlesource.com/platform/packages/apps
 - [26] https://techblogon.com/wp-content/uploads/2019/04/partition-size-in-android-device1.jpg
 - [27] https://overclocking.com/quest-ce-quun-ramdisk/
 - [28] https://en.wikipedia.org/wiki/Graphical_user_interface
-
+- [29] https://en.wikipedia.org/wiki/F2FS
+- [30] https://en.wikipedia.org/wiki/Ext4
+- [31] https://fr.wikipedia.org/wiki/M%C3%A9moire_flash
+- [32] https://fr.wikipedia.org/wiki/Virtual_FAT
