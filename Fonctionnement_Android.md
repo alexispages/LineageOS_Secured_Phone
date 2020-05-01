@@ -1,6 +1,6 @@
-# Fonctionnement d'Android
+# I) Fonctionnement d'Android
 
-## I) Présentation d'Android
+## 1) Présentation d'Android
 
 ### a) Histoire
 Lancé en juin 2007, Android est aujourd'hui le système d'exploitation le plus utilisé au monde sur smartphone [1]. Après le rachat de la société par Google en 2005, le géant américain a continué à travailler dessus et, aujourd'hui encore, l'améliore autant que possible. Chaque année, Google propose une nouvelle version majeure d'Android et, de manière plus régulière, il met à disposition diverses mises à jour de sécurité mineures.
@@ -21,7 +21,7 @@ La déclinaison la plus basique (la plus "pure") se nomme Android Stock, c’est
 
 En conclusion, on peut dire qu'Android s'est placé en véritable leader du marché des systèmes d'exploitation pour appareils mobiles (téléphones et tablettes), en proposant une expérience basée sur une interface modulable capable de correspondre au plus grand nombre.
 
-## II) L'architecture d'Android
+## 2) L'architecture d'Android
 
 Android est constitué d'une pile de composants. Le sens de lecture s'effectue de bas en haut. Nous allons analyser par la suite l'ensemble des couches composant le système Android[3].
 
@@ -137,7 +137,7 @@ Si le smartphone a été acheté chez un opérateur, il sera accompagné d'appli
 
 Il s'agit de l'ensemble des applications que l'utilisateur va pouvoir installer en plus de celles déjà présentes sur l'appareil. Le Google Play Store est généralement le lieu de prédilection pour installer de nouvelles applications Android, mais ce n'est pas le seul ! Bien que Google n'autorise pas le téléchargement d'autres magasins d'applications à partir du Google Play Store lui-même, il est tout de même possible de les obtenir en autorisant les applications provenant de sources inconnues. On peut tout à fait utiliser un store d'applications alternatif comme F-Droid[21], un magasin d'applications financés par des dons et dont les applications sont toutes Open Source et gratuites.
 
-## III) Système de fichiers et points de montage
+## 3) Système de fichiers et points de montage
 
 ### Qu'est-ce qu'un système de fichiers ?
 
@@ -147,7 +147,7 @@ Dans notre cas, le terme *système de fichiers* désigne l'organisation hiérarc
 
 Un point de montage est un dossier permettant d'accéder au contenu d'une partition[25] d'un support de stockage ou simplement à l'intégralité du support de stockage en lui même.
 
-### Structure du système de fichier d'Android
+### Structure du système de fichiers d'Android
 
 Android utilise plusieurs partitions pour organiser les fichiers et dossiers sur un appareil. On retrouve principalement 6 partitions sur un appareil Android. On donnera ci-dessous la liste des partitions pour le système de fichiers Android. On pourra noter toutefois qu'il peut y avoir d'autres partitions disponibles, différant d'un modèle à l'autre. En outre, les 6 partitions ci-dessous peuvent être trouvées sur n'importe quel appareil Android : 
 
@@ -201,8 +201,98 @@ Concernant les dispositif de stockage amovibles (carte SD notamment), il existe 
 - **EXT2/EXT3/EXT4** On utilise là aussi l'EXT4
 - **VFAT** (Virtual FAT[32]) qui est très souvent utilisé sur les cartes SD
 
+## 4) Processus de démarrage d'Android
 
-## Lexique + Images
+### a) Introduction
+
+En informatique, le démarrage consiste à mettre en marche un appareil informatique (dans notre cas, un smartphone) jusqu'à ce qu'il puisse être utilisé. Il peut être lancé par un matériel tel qu'une pression sur un bouton, ou par une commande logicielle. Après la mise sous tension, un appareil est relativement limité en terme d'action et ne peut lire qu'une partie de sa mémoire appelée mémoire morte[33]. Un petit programme appelé "firmware" (*micrologiciel* en français) y est stocké. Il permet d'accéder à d'autres types de mémoire, comme la mémoire interne et la carte SD. Ce micrologiciel est capable de charger des programmes dans la mémoire interne du smartphone et de les exécuter. Un gestionnaire de démarrage peut également être exécuté en option notamment pour des opérations de maintenance et de récupérarion.
+Le processus de démarrage d'un smartphone Android se déroule en 5 étapes que nous détaillerons dans chacune des sous parties ci-dessous.
+
+Schéma du processus de démarrage d'Android [34]
+
+### b) Boot ROM et Bootloader
+
+Lors de la mise sous tension d'un appareil, un premier code du nom de *"Boot ROM"* directement intégré au sein du processeur[35] va être lancé. Le code qu'il contient a pour but de lancer un second code nommé *"bootloader"* (ou *"chargeur d'amorçage"* en français) dans la mémoire vive de l'appareil. 
+
+Le chargeur d'amorçage est un morceau de code dont l'objectif principal est de charger un système d'exploitation, de mettre en place un environnement minimal dans lequel ce système d'exploitation peut fonctionner et de lancer le processus de démarrage. 
+
+Une des tâches principales du chargeur d'amorçage consiste à mettre en place la gestion de la mémoire et les options de sécurité de l'appareil. Ces éléments sont essentiels avant de lancer le noyau Linux. Le bootloader contient deux fichiers importants : *init.s* et *main.c*. Le code qu'ils contiennent va se charger d'initialiser les matériels embarqués tels que le clavier, l'horloge système, etc.
+
+Plus important encore, le chargeur d'amorçage vérifie l'intégrité des partitions de démarrage et de récupération (respectivement *boot* et *recovery* vues dans la partie III) avant de passer au lancement du noyau Linux. En effet, si la partition *boot* est endommagée, l'appareil ne procèdera pas au démarrage.
+
+### c) Noyau Linux
+
+Avant de démarrer les programmes et applications de l'espace utilisateur qui composent Android, le noyau Linux effectue la majeure partie de l'initialisation du matériel, des pilotes[36] et du système de fichiers.
+Les opérations suivantes sont réalisées dans l'ordre : 
+- Initialisation du **noyau Linux** (les zones de mémoire et d'Entrées/Sorties sont initialisées ainsi que la table des processus recensant l'ensemble des processus)
+- Initialisation des **pilotes**[36]
+- le système de fichier /root du superutilisateur est monté[37]
+- Le premier processus **init** est lancé
+
+Schéma lancement init[38]
+
+### d) Init
+
+Le processus **init** est un élément clé de la séquence de démarrage d'Android, il est chargé de monter les répertoires systèmes tel que **/sys**, **/dev** ou encore **/proc** et d'initialiser les principaux éléments du système Android en exécutant les commandes de deux fichiers :
+- **init.rc**, un fichier générique, commun à tous les appareils Android
+- **init.<nom_de_la_machine>.rc** un fichier spécifique à l'appareil (exemple : init.starlte.rc pour un Samsung Galaxy S9).
+
+Dans ces fichiers, nous pouvons trouver des commandes qui sont responsables du lancement de processus appelés **daemons**. Il s'agit de processus s'exécutant en arrière plan plutôt que sous le contrôle direct d'un utilisateur. Parmi eux se trouve notamment :
+
+- adbd (Android Debug Bridge Deamon) - Permet d'exécuter des commandes[39] sur son smartphone
+- debuggerd (Debugger Deamon) - Chargé de gérer les demandes de processus liés au plantage[40] d'une application
+- rild (Radio Interface Layer Deamon) - permet à l'appareil de dialoguer avec le matériel radio embarqué (utilisé par les applications ayant besoin du réseau cellulaire. Exemple : Appels, SMS/MMS)
+
+### e) Zygote et ART
+
+Après avoir démarré l'ensemble des *deamons*, le processus *init* va lancer un processus nommé **Zygote**. Il s'agit d'une **machine virtuelle ART** (Android Runtime pour rappel) contenant l'ensemble des ressources du framework d'Android (Bibliothèques C/C++ et framework Java 8). Ce processus se met en veille lorsque tous les éléments qu'il contient sont pré-chargés.
+
+Lorsqu'une application va être lancée par le système, le processus Zygote va se réveiller et lui fournir tous les éléments dont elle a besoin avant de se remettre en veille. Une machine virtuelle ART va ainsi être créée avec l'ensemble des éléments nécessaires (hérités de Zygote) à son bon fonctionnement. Chacune des demandes de l'application va se traduire par un processus afin de charger le plus d'éléments simultanées possible. C'est grâce à ce processus de création des applications que ces dernières peuvent démarrer très rapidement sur Android.
+
+A ce stade, on observe à l'écran l'animation de démarrage (logo de Google ou du fabriquant de l'appareil) et les processus lancés sont les suivants :
+
+Schéma deamons + Zygote [41]
+
+### f) Service Manager et System Server
+
+Suite au lancement de Zygote, le processus *init* va désormais lancer le processus **Runtime** qui va à son tour lancer le processus **Service Manager** (ou *Gestionnaire de services* en français) qui gère l'enregistrement et la consultation des services comme le DNS[42]. *Runtime* va définir *Service Manager* comme gestionnaire de contexte par défaut pour les services ce qui nous donne ceci :
+
+Schéma daemons + Zygote + Service Manager [43]
+
+Ensuite, Zygote va créer une nouvelle VM ART et y démarrer le **System Server**. Ce dernier va initialiser les services système suivant : 
+
+- Power Manager - Gestionnaire d'alimentation
+- Activity Manager - Gestionnaire d'activité
+- Telephony Registry - Registre téléphonique
+- Package Manager - Gestionnaire de paquets[44]
+- Battery Service - Service de batterie
+- Lights Service - Service de luminostité
+- Vibrator Service - Service de vibration
+- Alarm Manager - Gestionnaire d'alarme
+- Window Manager - Gestionnaire de fenêtre
+- Bluetooth Service - Service du Bluetooth
+- Location Manager - Service de localisation
+- etc...
+
+L'ensemble de ces services vont être enregistrés auprès du *Service Manager* :
+
+Schéma daemons + Zygote + Service Manager + Services + System Server [45]
+
+A partir de ce moment, il ne reste plus qu'une étape : démarrer le **Lanceur d'applications** qui va nous permettre d'exécuter d'autres applications comme son nom l'indique. Pour cela, Zygote va lancer une nouvelle machine virtuelle ART contenant notre application ***Home***. A compter de cet instant **notre système est prêt** et on peut le représenter de cette manière :
+
+Schéma daemons + Zygote + Service Manager + Services + System Server + App Launcher [46]
+Ecran d'acceuil smartphone (Android 10) [47]
+
+### g) Lancement d'une application quelconque
+
+Lorsque l'utilisateur va appuyer sur l'icone de l'application qu'il souhaite lancer : 
+1) Le lanceur d'applicaiton va envoyer l'information vers les divers services dont cette dernière a besoin (service bluetooth, service de localisation, etc...).
+2) Le gestionnaire de service va faire appel aux gestionnaire de paquets, gestionnaire d'activité et gestionnaire de fenêtres pour envoyer une requête à Zygote
+3) et 4. L'application va démarrer dans une machine virtuelle ART à l'aide de Zygote :
+
+Schéma daemons + Zygote + Service Manager + Services + System Server + App Launcher + Application quelconque [48]
+
+## 5) Lexique + Images
 - [1] Parts de marché d'Android en 2019 :
 https://mobilemarketing.fr/2019/04/30/android-sapproche-des-80-de-parts-de-marche/
 - [2] https://fr.wikipedia.org/wiki/Noyau_Linux
@@ -237,3 +327,19 @@ https://android.googlesource.com/platform/packages/apps
 - [30] https://en.wikipedia.org/wiki/Ext4
 - [31] https://fr.wikipedia.org/wiki/M%C3%A9moire_flash
 - [32] https://fr.wikipedia.org/wiki/Virtual_FAT
+- [33] https://fr.wikipedia.org/wiki/M%C3%A9moire_morte
+- [34] https://miro.medium.com/max/866/0\*4zrPhMmFvSwkfJcg.png
+- [35] https://fr.wikipedia.org/wiki/Processeur
+- [36] https://fr.wikipedia.org/wiki/Pilote_informatique
+- [37] Lorsque l'on *"monte"* un répertoire, le système d'exploitation peut alors accéder au contenu du système de fichiers qui lui est associé.
+- [38] https://miro.medium.com/max/1134/1*\_HGgPepdyE5kpStEGdbN5w.png
+- [39] https://fr.wikipedia.org/wiki/Commande_informatique
+- [40] https://fr.wikipedia.org/wiki/Plantage
+- [41] https://miro.medium.com/max/1400/1*\orUG4TqFnTJ0uSIFycJ2vA.png
+- [42] https://fr.wikipedia.org/wiki/Domain_Name_System
+- [43] https://miro.medium.com/max/882/1*\HiTZMUbRRHxdCnwN4i-xww.png
+- [44] https://fr.wikipedia.org/wiki/Paquet_(logiciel)
+- [45] https://miro.medium.com/max/1234/1\*b_RGj4GGf8HrIteP6BxIow.png
+- [46] https://miro.medium.com/max/1214/1*\OuWPRO_hIc60mLnFRlhnPA.png
+- [47] https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Android_Q_Beta6_screenshot.png/250px-Android_Q_Beta6_screenshot.png
+- [48] https://miro.medium.com/max/1400/1\*DNmreF9wbTyxnLJFp4djOw.png
