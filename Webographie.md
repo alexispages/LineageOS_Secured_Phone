@@ -118,3 +118,21 @@
 - https://en.wikipedia.org/wiki/Ext4
 - https://fr.wikipedia.org/wiki/M%C3%A9moire_flash
 - https://fr.wikipedia.org/wiki/Virtual_FAT
+
+## Consulté le 1er Mai
+
+### Boot process
+- https://en.wikipedia.org/wiki/Booting
+- https://ayusch.com/android-internals-the-android-os-boot-process/
+- https://android.jlelse.eu/android-boot-process-8f7d94ff9889
+- https://proandroiddev.com/how-android-boot-up-9864376d911c
+- https://fr.wikipedia.org/wiki/M%C3%A9moire_morte
+- https://fr.wikipedia.org/wiki/Processeur
+- https://fr.wikipedia.org/wiki/Pilote_informatique
+- https://fr.wikipedia.org/wiki/Daemon_(informatique)
+- https://developer.android.com/studio/command-line/adb
+- https://fr.wikipedia.org/wiki/Commande_informatique
+- https://fr.wikipedia.org/wiki/Plantage
+- https://developer.android.com/topic/performance/memory-overview
+- https://fr.wikipedia.org/wiki/Domain_Name_System
+- https://fr.wikipedia.org/wiki/Paquet_(logiciel)
