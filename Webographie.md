@@ -136,3 +136,20 @@
 - https://developer.android.com/topic/performance/memory-overview
 - https://fr.wikipedia.org/wiki/Domain_Name_System
 - https://fr.wikipedia.org/wiki/Paquet_(logiciel)
+
+## Consulté le 9 Mai
+
+### Qu'est-ce que LineageOS ?
+- https://en.wikipedia.org/wiki/LineageOS
+
+### Pourquoi LineageOS ?
+- https://en.wikipedia.org/wiki/LineageOS
+- https://www.replicant.us/
+- https://omnirom.org/
+- https://e.foundation/
+- https://digitalcontentnext.org/blog/2018/08/21/google-data-collection-research/
+- https://digitalcontentnext.org/wp-content/uploads/2018/08/DCN-Google-Data-Collection-Paper.pdf
+
+### Procédure d'installation
+- https://wiki.lineageos.org/devices/piccolo
+- https://wiki.lineageos.org/devices/piccolo/install
