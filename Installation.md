@@ -6,6 +6,8 @@ Dans cette partie, nous allons procéder à l'installation d'un sytème d'exploi
 
 *LineageOS* est un système d'exploitation libre et gratuit disponible sur smartphones et tablettes basé sur l'Android Open Source Project (AOSP). Il succède à *CyanogenMod* lorsque *Cyanogen Inc*. a annoncé qu'elle arrêtait le développement et fermait l'infrastructure à l'origine du projet. Comme *Cyanogen Inc.* a conservé les droits sur le nom de Cyanogen, le projet a été rebaptisé *LineageOS*.
 
+Logo LineageOS [1]
+
 *LineageOS* a été officiellement lancé le 24 décembre 2016 et son code source a été rendu disponible à la fois sur *GitHub*[2] et *GitLab*[3]. Comme pour toutes les versions d'Android, les versions de ce système d'exploitation sont spécifiques à un seul modèle d'appareil. Depuis son lancement, les différentes version de *LineageOS* sont disponibles pour 109 modèles de smartphones avec plus de 1,7 million d'installations actives en 2017.
 
 *LineageOS* permet à la communauté de s'impliquer dans le développement de différentes manières via :
@@ -52,4 +54,57 @@ LineageOS offre plusieurs fonctionnalités que l'on ne retrouve pas dans l'Andro
 
 ### b) Support d'un appareil
 
-À titre d'exemple, je dispose d'un BQ Aquaris M5 sorti en 2015 dont le support officiel des mises à jour a été stoppé en 2017. Grâce à LineageOS, il est possible de disposer de mises à jour supplémentaires jusqu'en Mars 2019 ce qui représente une durée de support non négligeable contrairement à celui fourni initialement par un fabriquant. Un smartphone Android dépassant rarement les 3 ans de support pour les mises à jour, l'utilisation de LineageOS apporte une réelle plus value.
+À titre d'exemple, je dispose d'un BQ Aquaris M5 sorti en 2015 dont le support officiel des mises à jour a été stoppé en 2017. Grâce à LineageOS, il est possible de disposer de mises à jour supplémentaires jusqu'en Mars 2019 ce qui représente une durée de support non négligeable contrairement à celui fourni initialement par un fabriquant. Un smartphone Android dépassant rarement les 3 ans de support pour les mises à jour, l'utilisation de LineageOS peut apporter une réelle plus value.
+
+### c) Les applications
+
+Comme nous l'avions vu dans la première partie de ce mémoire, les smartphones embarquent de très nombreuses applications pré-installées (applications systèmes, Google Apps, applications constructeurs, applications pré-installées, applications opérateur). En installant LineageOS, seules les applications systèmes (Ex : appels, messages) seront présentes sur notre smartphone. Ces applications sont développées par Google mais sont entièrement Open Source et ne nécessitent pas l'utilisation des services Google. En résumé, avec LineageOS, le nombre d'applications déjà installées sur notre smartphone sera réduit au strict nécessaire évitant ainsi d'avoir un grand nombre d'applications inutiles à désinstaller lors du premier démarrage !
+
+### d) Les services Google
+
+Comme nous l'avons vu dans l'Introduction de ce mémoire, Google fournit avec son système d'exploitation ce que l'on appelles les ***GSF (Google Services Framework)***[6]. Dans cette partie, nous allons voir qu'elle peut être l'ampleur de leur utilisation par Google avec un exemple basé sur le rapport ***"Google Data Collection" (document 1 en Annexe)*** détaillant le quotidien d'un utilisateur fréquent des services Google.
+
+[7] Image Life with Google Services
+
+Comme on peut le voir ci dessus, un total de 13 activités ont pu être recensées par la collecte de données liée au smartphone. Google va tirer de précieuses informations de l'ensemble de ces activités : 
+
+1. Les goûts musicaux de l'utilisateur sont connus grâce à l'application *Google Play Music* (cela pourrait très bien être *Spotify* ou encore *Deezer* qui utilisent les services Google et dont une partie des données est transmise).
+
+2. Grâce à la géolocalisation, on sait que l'utilisateur s'est rendu à une garderie donc qu'il a un ou plusieurs enfants. 
+
+3. Toujours grâce à la géolocalisation, on sait que notre utilisateur a pris le métro. Il s'agit certainement du meilleur moment de la journée pour afficher une notification liée à l'actualité afin que ce dernier puisse la consulter. 
+
+4. L'utilisateur a fait une recherche sur des médicaments en lien avec un rhume, lui ou son/ses enfants peuvent donc être malade. Des études ont démontré qu'un individu était plus vulnérable en étant malade et sa capacité à acheter augmentait de surcroît. Il sera certainement judicieux d'afficher plus de publicité incitant à l'achat compulsif durant une courte période.
+
+5. L'utilisateur s'est rendu à pied du métro à son lieu de travail (d'après les données de géolocalisation)
+
+6. L'utilisateur a utilisé Maps afin de trouver un lieu pour déjeuner
+
+7. En utilisant l'application *Starbucks*, il a été identifié que cette personne a commandé un café ce qui nous informe sur ses habitudes en terme de consommation de boisson (revente de statistiques possible).
+
+8. L'utilisateur a pris rendez-vous chez le médecin, un événement a été ajouté dans l'application *Google Calendar* à partir de l'email de confirmation.
+
+9. À partir de l'application *Google Pay*, on sait que notre utilisateur s'est rendu à la pharmacie pour acheter des médicaments (certainement en lien avec un rhume)
+
+10. À partir de l'application *Uber*, notre utilisateur s'est rendu de son lieu de travail à son domicile.
+
+11. L'utilisateur a fait une recherche d'hôtels sur le site web *Expedia.com*, des publicités en lien avec sa recherche lui seront proposées.
+
+12. En utilisant l'enceinte connectée *Google Home*, notre utilisateur a joué une musique pour son/ses enfants. Nous sommes à présents sûrs qu'il a des enfants.
+
+13. L'utilisateur a regardé un show télévisé sur *Youtube*. On connaît à présent ses goûts en terme de contenu vidéo et les futures recommandations à afficher sur *Youtube*. Des vidéos pour enfants seront certainement également proposées afin que ces derniers utilisent eux aussi les services de Google et y soient habitués dès leur plus jeune âge.
+
+Ainsi, à partir des informations récoltées en une seule journée, Google en sait déjà énormément sur vous : **votre famille, vos habitudes, vos goût musicaux, votre lieu de travail, qui est votre médecin, ce que vous achetez, etc...** Très rapidement, Google saura presque tout sur vous et pourra revendre l'ensemble de ces données à de nombreux annonceurs qui pourront vous cibler de manière très efficace par la publicité ou à des services de diffusion qui connaîtront les contenus les plus adaptés à votre profil, etc... 
+
+L'outil le plus redoutable dans cette stratégie de récolte de données reste **la géolocalisation**. En effet, on pense souvent être protégé en désactivant la géolocalisation, le Wi-Fi ou encore le Bluetooth mais il n'en est rien. Dans un premier temps, une géolocalisation grossière peut être effectuée à partir des coordonnées GPS du smartphone. Ensuite, afin d'affiner la position de l'appareil, les identifiants des antennes de téléphonie auxquelles le smartphone est connecté peuvent être transmis. On peut aussi géolocaliser le smartphone à partir du signal Wi-Fi qu'il émet. C'est aussi le cas du signal Bluetooth qui permet de fournir jusqu'à l'étage exact auquel nous sommes situés. Également, il existe des paramètres au sein du smartphone (pouvant être désactivés par l'utilisateur) ayant pour objectif de scanner les réseaux Wi-Fi ou appareils Bluetooth à proximité en vue de s'y connecter **même si le Wi-Fi ou le Bluetooth étaient jusqu'à présents désactivés**. Une fois un appareil détecté, ce dernier va transmettre sa position vers le notre et on pourra ainsi en déduire notre propre géolocalisation. Les points d'accès Wi-Fi publics étant très présents en ville, la géolocalisation y est grandement facilitée. Google peut déterminer avec un degré de confiance élevé si un utilisateur est immobile, s'il marche, court, fait du vélo, prend le train ou la voiture. Pour ce faire, il suit les coordonnées de localisation d'un utilisateur à intervalles réguliers, en combinaison avec les données des capteurs embarqués (ex : un accéléromètre) au sein du smartphone. C'est avec ces procédés que Google peut quasiment vous géolocaliser à tout moment (sauf si vous êtes en mode avion ce qui est très peu fréquent) faisant de votre smartphone un espion hors pair.
+
+Ceci nous amène au point le plus important lorsque l'on installe LineageOS : **il n'y a plus de *GSF***. En effet, nativement, LineageOS ne dispose pas des services de Google et met un point d'honneur à ne pas espionner les utilisateurs de son système d'exploitation et revendre leurs données aux plus offrants.
+
+# Lexique + Images
+- [1] https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/LineageOS_Logo.svg/512px-LineageOS_Logo.svg.png
+- [2] https://fr.wikipedia.org/wiki/GitHub
+- [3] https://fr.wikipedia.org/wiki/GitLab
+- [4] https://fr.wikipedia.org/wiki/Wiki
+- [5] https://fr.wikipedia.org/wiki/Bug_(informatique)
+- [6] https://apkpure.com/google-services-framework/com.google.android.gsf
+- [7] https://digitalcontentnext.org/wp-content/uploads/2018/08/DCN-Google-Data-Collection-Paper.pdf
