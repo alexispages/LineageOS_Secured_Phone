@@ -141,6 +141,11 @@
 
 ### Qu'est-ce que LineageOS ?
 - https://en.wikipedia.org/wiki/LineageOS
+- https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/LineageOS_Logo.svg/512px-LineageOS_Logo.svg.png
+- https://fr.wikipedia.org/wiki/GitHub
+- https://fr.wikipedia.org/wiki/GitLab
+- https://fr.wikipedia.org/wiki/Wiki
+- https://fr.wikipedia.org/wiki/Bug_(informatique)
 
 ### Pourquoi LineageOS ?
 - https://en.wikipedia.org/wiki/LineageOS
@@ -153,3 +158,10 @@
 ### Procédure d'installation
 - https://wiki.lineageos.org/devices/piccolo
 - https://wiki.lineageos.org/devices/piccolo/install
+
+## Consulté le 10 Mai
+
+### Pourquoi LineageOS ?
+- https://digitalcontentnext.org/blog/2018/08/21/google-data-collection-research/
+- https://digitalcontentnext.org/wp-content/uploads/2018/08/DCN-Google-Data-Collection-Paper.pdf
+- https://apkpure.com/google-services-framework/com.google.android.gsf
