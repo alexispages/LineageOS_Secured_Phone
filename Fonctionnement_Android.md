@@ -29,7 +29,7 @@ Android est constitué d'une pile de composants. Le sens de lecture s'effectue d
 
 Il s'agit de la couche gérant le matériel de l'appareil mobile (écran, caméra, support de stockage, etc...). C'est elle qui va permettre aux logiciels embarqués dans l'appareil d'accéder à ces composants. La version utilisée par Android a été élaborée spécialement pour un environnement mobile en se focalisant sur des aspects tels que la gestion énergétique (batterie) et de la mémoire. En résumé, c'est cette couche qui permet à Android d'être compatible avec un très grand nombre d'appareils aux configurations matérielles très différentes.
 
-### b) Couche d'abstraction matérielle ou Hardware Abstraction Layer (HAL)
+### b) La Couche d'abstraction matérielle ou Hardware Abstraction Layer (HAL) propriétaire de Google
 
 Cette couche se compose de plusieurs modules[4] d'une bibliothèque logicielle[5], chacun d'entre eux étant lié à un type spécifique de matériel comme la caméra ou le module bluetooth. Ainsi, lorsqu'une API[6] du framework[7] Java va demander à accéder au matériel de notre appareil, Android chargera le module correspondant au composant à utiliser. C'est cette couche qui permet à une application de s'adpater au matériel embarqué dans un appareil. 
 
@@ -37,7 +37,7 @@ En réalité, le noyau Linux fournit déjà une compatibilité avec le matériel
 
 ### c) Le moteur d'exécution d'Android
 
-Il s'agit d'un élément crutial du système car c'est ce dernier qui va permettre d'exécuter des applications basée sur le langage de programmation Java et certains services système d'Android. Ce moteur d'exécution se divise en deux parties : un environnement d'exécution des applications, et des bibliothèques de base (Core libraries) sur lesquelles nous reviendrons dans un second temps.
+Il s'agit d'un élément crutial du système car c'est ce dernier qui va permettre d'exécuter des applications basées sur le langage de programmation Java et certains services système d'Android. Ce moteur d'exécution se divise en deux parties : un environnement d'exécution des applications, et des bibliothèques de base (Core libraries) sur lesquelles nous reviendrons dans un second temps.
 
 #### *L'environnement d'exécution*
 
@@ -47,30 +47,30 @@ C'est ainsi qu'est née la machine virtuelle[9] Dalvik, spécialement développ�
 
 Schéma du fonctionnement de Dalvik [10]
 
-Le schéma ci-dessus explique le processus de construction d'une application avec Dalvik. Dans un premier temps, le développeur va produire un fichier *.java* contenant une suited'instructions dans le langage de programmation Java. Ce fichier va ensuite être traduit dans un second langage que l'on appelle *bytecode* qui sera contenu à son tour dans un fichier *.class*. On pourra par la suite regrouper différents fichiers *.class* en un fichier *.jar* qui sera exécutable dans l'environement d'exécution Java. Or, la machine virtuelle Dalvik possède son propre bytecode. Il est donc nécessaire de convertir le *bytecode Java* en *bytecode Dalvik* (création d'un fichier *.dex*) afin de pouvoir exécuter une application sur Android.
+Le schéma ci-dessus explique le processus de construction d'une application avec Dalvik. Dans un premier temps, le développeur va produire un fichier *.java* contenant une suite d'instructions dans le langage de programmation Java. Ce fichier va ensuite être traduit dans ce que l'on appelle du *bytecode Java* qui sera contenu à son tour dans un fichier *.class*. On pourra par la suite regrouper différents fichiers *.class* en un fichier *.jar* qui sera exécutable dans l'environement d'exécution Java. Or, la machine virtuelle Dalvik possède son propre bytecode. Il est donc nécessaire de passer du *bytecode Java* au *bytecode Dalvik* (création d'un fichier *.dex*) avec une fonction nommée *dx* afin de pouvoir exécuter une application sur Android.
 
 L'avantage majeur de Dalvik réside dans la gestion des processus[11]. L'objectif va être d'isoler chacun des processus les uns par rapport aux autres en associant un processus à une machine virtuelle. Par ce biais, si un processus dysfonctionne, les autres ne vont pas être impactés. Ainsi, chaque processus est protégé des autres ce qui renforce la protection du système.
 
-À partir de la version 5.0 d'Android (sortie en 2014), Dalvik a été remplacée par l'*Android Runtime* (ART) qui permet de transcrire le *bytecode java* directement en langage machine[12]. Les gains apportés en performance et en autonomie des batteries sont conséquents avec une augmentation de 20 à 30%. En contre-partie, la taille des applications augmente de 20%.
+À partir de la version 5.0 d'Android (sortie en 2014), Dalvik a été remplacée par l'*Android Runtime* (ART) qui permet de transcrire le *bytecode java* directement en langage machine[12]. Les gains apportés en performance et en autonomie des batteries sont conséquents avec une augmentation de 20 à 30%. En contre-partie, la taille des applications a augmenté de 20%.
 
-Il ne manque plus qu'une étape avant d'exécuter une application : le manifest. Ce dernier contient diverses informations sur l'application notamment les autorisations dont l'application a besoin pour accéder à des parties protégées du système (accès au stockage, à la caméra, à la géolocalisation etc...) ou à d'autres applications. Il déclare également les autorisations que les autres applications doivent avoir pour accéder au contenu de cette application. Il recense également les fonctionnalités matérielles et logicielles requises par l'application, ce qui affecte les appareils pouvant installer l'application à partir de Google Play. Par exemple, si votre appareil dispose d'une version trop ancienne d'Android, il ne pourra pas installer certaines applications.
+Il ne manque plus qu'une étape avant d'exécuter une application : le manifest. Ce dernier contient diverses informations sur l'application notamment les autorisations dont l'application a besoin pour accéder à des parties protégées du système (accès au stockage, à la caméra, à la géolocalisation, etc...) ou à d'autres applications. Il déclare également les autorisations que les autres applications doivent avoir pour accéder au contenu de cette application. Il recense aussi les fonctionnalités matérielles et logicielles requises par l'application, ce qui affecte les appareils pouvant installer l'application à partir du Google Play Store. Par exemple, si votre appareil dispose d'une version trop ancienne d'Android, il ne pourra pas installer certaines applications.
 
 En ajoutant ce manifest au langage machine obtenu lors de la dernière étape du processus de construction d'une application, l'environnement d'exécution d'Android (ART) va ainsi pouvoir exécuter notre application qui sera désormais au format *.apk*.
 
 #### *Les "Bibliothèques de base" (Core Libraries)*
 
-Les *Core Libraries* d'Android sont constituées d'une copie des *Core Librairies* de Java 8 (les versions postérieures n'étant pas supportées par Android) et d'un ensemble de bibliothèques basée sur Java spécifiques au développement d'Android. Voici les principales biliothèques de base que l'on peut trouver dans cet ensemble :
+Les *Core Libraries* d'Android sont constituées d'une copie des *Core Librairies* de Java 8 (les versions postérieures n'étant pas supportées par Android) et d'un ensemble de bibliothèques basées sur Java spécifiques au développement d'Android. Voici les principales biliothèques de base que l'on peut trouver dans cet ensemble :
 - **android.app** - Fournit un accès au modèle d'application et constitue la pierre angulaire de toutes les applications Android.
-- **android.content** - Facilite l'accès au contenu, la publication et la communication entre les applications et les composants d'application.
-- **android.database** - Utilisé pour accéder aux données publiées par les fournisseurs de contenu et comprend des classes de gestion de base de données[13] *SQLite*.
+- **android.content** - Facilite l'accès au contenu, la publication et la communication entre les applications et les composants d'applications.
+- **android.database** - Utilisée pour accéder aux données publiées par les fournisseurs de contenu et comprend des classes de gestion de base de données[13] *SQLite*.
 - **android.graphics** - API de dessin graphique en 2D comprenant des couleurs, des points, des filtres, des rectangles et des canvas[14].
 - **android.hardware** - API permettant d'accéder à du matériel tel que l'accéléromètre et le capteur de lumière.
 - **android.opengl** - Interface Java pour piloter l'API de rendu graphique en 3D *OpenGL ES*.
-- **android.os** - Fournit aux applications l'accès aux services standard du système d'exploitation, notamment les messages, les services système et la communication entre les processus.
+- **android.os** - Fournit aux applications l'accès aux services standards du système d'exploitation, notamment les messages, les services système et la communication entre les processus.
 - **android.media** - Fournit des classes[15] pour permettre la lecture de fichiers audio et vidéo.
 - **android.net** - Un ensemble d'API donnant accès à la partie réseau. Comprend android.net.wifi, qui permet d'accéder à la partie réseau sans fil de l'appareil.
 - **android.print** - Comprend un ensemble de classes qui permettent d'envoyer du contenu à des imprimantes configurées à partir d'applications Android.
--  **android.provider** - Un ensemble de classes qui permettent d'accéder aux bases de données standard des fournisseurs de contenu Android notamment celles gérées par les applications de calendrier et de contact.
+-  **android.provider** - Un ensemble de classes qui permettent d'accéder aux bases de données standards des fournisseurs de contenu Android notamment celles gérées par les applications de calendrier et de contact.
 -  **android.text** - Utilisé pour présenter et manipuler du texte sur l'écran d'un appareil.
 -  **android.util** - Ensemble de classes d'utilitaires permettant d'effectuer des tâches telles que la conversion de chaînes de caractères ou de nombres, le traitement XML[16] et la manipulation de la date et de l'heure.
 - **android.view** - Fournit les éléments de base des interfaces utilisateur des applications.
@@ -79,25 +79,25 @@ Les *Core Libraries* d'Android sont constituées d'une copie des *Core Librairie
 
 ### d) Bibliothèques C/C++
 
-Les bibliothèques de base d'Android que nous venons de décrire dans la partie précédente sont basées sur Java et fournissent les API principales pour les développeurs qui écrivent des applications Android. Il est important de noter que les bibliothèques de base n'effectuent pas une grande partie du travail réel et constituent, en réalité essentiellement un élément central écrit en Java autour duquel s'inscrit un ensemble de bibliothèques basées sur les langages de programmation C et C++. Lorsque l'on fait appel, par exemple, à la bibliothèque android.opengl pour afficher des graphismes en 3D sur l'écran de l'appareil, la bibliothèque fait en fait appel à la bibliothèque C++ OpenGL ES qui, à son tour, travaille avec les couches sous-jacentes (HAL et noyau Linux) pour effectuer les tâches d'affichage.
+Les bibliothèques de base d'Android que nous venons de décrire dans la partie précédente sont basées sur Java et fournissent les API principales pour les développeurs qui écrivent des applications Android. Il est important de noter que les bibliothèques de base n'effectuent pas une grande partie du travail réel et constituent, en réalité essentiellement un élément central écrit en Java autour duquel s'inscrit un ensemble de bibliothèques basées sur les langages de programmation C et C++. Lorsque l'on fait appel, par exemple, à la bibliothèque android.opengl pour afficher des graphismes en 3D sur l'écran de l'appareil, la bibliothèque fait en fait appel à la bibliothèque C++ OpenGL ES qui, à son tour, travaille avec les couches sous-jacentes (Noyau Linux et HAL propriétaire de Google) pour effectuer les tâches d'affichage.
 
 Les bibliothèques C/C++ sont incluses pour remplir un large éventail de fonctions diverses, notamment l'affichage graphique en 2D et 3D, la communication TLS/SSL[17], la gestion de bases de données SQLite, la lecture audio et vidéo, le rendu de polices d'écriture bitmap et vectorielles, la gestion des sous-systèmes d'affichage et des couches graphiques et une implémentation de la bibliothèque système C standard (libc)[18].
 
-En pratique, le développeur d'applications Android typique accédera à ces bibliothèques uniquement par le biais des API de la bibliothèque centrale d'Android basée sur Java. Si un accès direct à ces bibliothèques est nécessaire, il peut être réalisé en utilisant l'Android Native Development Kit (NDK) dont le but est d'appeler les méthodes natives des langages de programmation non Java ou Kotlin (tels que C et C++) à partir du code Java en utilisant l'interface native Java (JNI).
+En pratique, le développeur d'applications Android accédera à ces bibliothèques uniquement par le biais des API de la bibliothèque centrale d'Android basée sur Java. Si un accès direct à ces bibliothèques est nécessaire, il peut être réalisé en utilisant l'Android Native Development Kit (NDK) dont le but est d'appeler les méthodes natives des langages de programmation non Java ou Kotlin (tels que C et C++) à partir du code Java en utilisant l'interface native Java (JNI).
 
-### e) Framework API Java
+### e) Java API Framework
 
 Le cadre d'application (*framework* en anglais) est un ensemble de services qui forment collectivement l'environnement dans lequel les applications Android fonctionnent et sont gérées. Ce cadre met en œuvre le concept selon lequel les applications Android sont construites à partir de composants réutilisables, interchangeables et remplaçables. Ce concept est poussé plus loin en ce sens qu'une application est également capable de publier ses capacités ainsi que toutes les données correspondantes afin qu'elles puissent être trouvées et réutilisées par d'autres applications.
 
 #### Qu'est-ce qu'un service ?
 
-Un service est un composant d'application qui peut effectuer des opérations de longue durée en arrière-plan, et il ne fournit pas d'interface utilisateur. Un autre composant d'application peut démarrer un service, et il continue à fonctionner en arrière-plan même si l'utilisateur passe à une autre application. Un service peut traiter des transactions réseau, jouer de la musique, effectuer des déplacements de fichiers ou interagir avec un fournisseur de contenu, le tout en arrière-plan. Les services système jouent un rôle clé en exposant les fonctions de bas niveau du matériel et du noyau Linux aux applications de haut niveau. Les services système sont actifs du démarrage au redémarrage, c'est-à-dire pendant toute la durée de vie du système.
+Un service est un composant d'application qui peut effectuer des opérations de longue durée en arrière-plan. Il ne fournit pas d'interface utilisateur. Si un autre composant d'application démarre un service, celui déjà lancé continuera à fonctionner en arrière-plan même si l'utilisateur passe à une autre application. Un service peut traiter des transactions réseau, jouer de la musique, effectuer des déplacements de fichiers ou interagir avec un fournisseur de contenu, le tout, en arrière-plan. Les services système jouent un rôle clé en exposant les fonctions de bas niveau du matériel et du noyau Linux aux applications de haut niveau. Les services système sont actifs du démarrage au redémarrage, c'est-à-dire pendant toute la durée de vie du système.
 
 Il existe 3 types de services :
 
-- **Premier plan** - Un service de premier plan effectue une opération qui est perceptible par l'utilisateur. Par exemple, une application audio utiliserait un service d'avant-plan pour lire une piste audio. Les services d'avant-plan doivent afficher une notification. Les services d'avant-plan continuent de fonctionner même lorsque l'utilisateur n'interagit pas avec l'application.
+- **Premier plan** - Un service de premier plan effectue une opération qui est perceptible par l'utilisateur. Par exemple, une application audio utiliserait un service d'avant-plan pour lire et afficher celle en cours de lecture. Les services d'avant-plan affichent une notification et continuent de fonctionner même lorsque l'utilisateur n'interagit pas avec l'application.
 - **Arrière-plan** - Un service d'arrière-plan effectue une opération qui n'est pas directement remarquée par l'utilisateur. Par exemple, si une application utilise un service pour compacter son stockage, il s'agit généralement d'un service d'arrière-plan.
-- **Relié** - Un service est lié lorsqu'un composant d'application se lie à lui en appelant la fonction bindService(). Un service lié offre une interface client-serveur qui permet aux composants d'interagir avec le service, d'envoyer des demandes et de recevoir des résultats. Un service lié ne fonctionne que tant qu'un autre composant de l'application lui est lié. Plusieurs composants peuvent se lier au service en même temps, mais lorsque tous se délient, le service est détruit.
+- **Relié** - Un service est lié lorsqu'un composant d'application se lie à lui en appelant la fonction *bindService()*. Un service lié offre une interface client-serveur qui permet aux composants d'interagir avec le service, d'envoyer des demandes et de recevoir des résultats. Un service lié ne fonctionne que tant qu'un autre composant de l'application lui est lié. Plusieurs composants peuvent se lier au service en même temps, mais lorsque tous se délient, le service est détruit.
 
 #### Les services du framework
 
@@ -114,28 +114,20 @@ Le framework d'Android comprend les principaux services suivants :
 
 ### f) Les applications
 
-Les applications sont situées au sommet de la pile logicielle d'Android. Elles comprennent à la fois les applications natives fournies avec l'implémentation particulière d'Android (par exemple le navigateur web et les applications de messagerie), les applications apportées par le constructeur, les applications pré-installées, les applications fournies par l'opérateur et les applications tierces installées par l'utilisateur après l'achat de l'appareil. Au-delà de l'ensemble des couches que nous avons vu précédemment, c'est de loin celle des applications qui demeure la plus importante car c'est celle à laquelle l'utilisateur est directement confronté.
+Les applications sont situées au sommet de la pile logicielle d'Android. Elles comprennent à la fois les applications natives fournies avec l'implémentation particulière d'Android (par exemple le navigateur web et les applications de messagerie), les applications apportées par le constructeur, les applications pré-installées, les applications fournies par l'opérateur et les applications tierces installées par l'utilisateur après l'achat de l'appareil. La couche applicative est l'une des plus importantes car c'est celle à laquelle l'utilisateur est directement confronté. On distingue deux catégories d'applications sur Android dont nous détaillerons la composition ci-dessous.
 
 #### Applications système
 
-La version "pure" d'Android, c'est à dire celle de base fournie par Google contient ainsi de nombreuses applications comme un dialer afin de composer un numéro, un calendrier, une application pour gérer les caméras embarquées au sein de l'appareil ou encore une application pour gérer ses emails, etc...
-On peut distinguer deux types d'applications fournies avec Android : celle dont le code source est accessible[19] et celle dont le code source est protégé (Exemples : Google Maps, Gmail, Google photos). Toutes ces applications ne peuvent être désinstallées d'un appareil tant que l'on ne dispose pas d'un accès superutilisateur[20].
+Dans un premier temps, Android dispose d'applications dites "système" qui ne peuvent être désinstallées d'un appareil (sauf si l'on dispose d'un accès superutilisateur[20] sur ce dernier). On trouve de très nombreuses applications dans ce cas de figure : 
+- **Applications de base d'Android** - La version "pure" d'Android, c'est à dire celle de base fournie par Google contient de nombreuses applications comme un dialer afin de composer un numéro, un calendrier, une application pour gérer les caméras embarquées au sein de l'appareil ou encore une application pour gérer ses emails, etc... On peut distinguer deux types d'applications fournies avec Android : celle dont le code source est accessible[19] et celle dont le code source est protégé (Exemples : Google Maps, Gmail, Google photos).
+- **Applications constructeurs** - De nombreux constructeurs fournissent leurs propres applications équivalentes à celle proposées par Google et c'est la raison pour laquelle on se retrouve avec des applications doublon sur un smartphone.
+- **Applications opérateurs** - Si le smartphone a été acheté chez un opérateur, il sera accompagné d'applications installées par ce dernier permettant de suivre sa consommation de données, d'accéder à certains services, etc... (ex : les applications *Orange et moi* ou *Cloud Orange*)
 
-#### Applications constructeurs
+#### Applications désinstallables
 
-Certains constructeurs, comme Samsung, fournissent leur propre application pour la lecture de musique ou d'agenda et c'est la raison pour laquelle on se retrouve avec des applications doublon sur un smartphone. 
-
-#### Applications pré-installées
-
-Également, certains constructeurs réalisent des partenariats avec des marques et disposent ainsi d'applications comme le pack Office pré-installées sur leurs appareils. Cela peut être gênant si de très nombreuses applications sont pré-installées comme des jeux à titre d'exemple. Néanmois, on pourra désinstaller l'ensemble de ces applications sans problèmes.
-
-#### Applications opérateur
-
-Si le smartphone a été acheté chez un opérateur, il sera accompagné d'applications installées par ce dernier permettant de suivre sa consommation de données, de gérer certaines fonctionnalités de sa box, etc...
-
-#### Applications tierces
-
-Il s'agit de l'ensemble des applications que l'utilisateur va pouvoir installer en plus de celles déjà présentes sur l'appareil. Le Google Play Store est généralement le lieu de prédilection pour installer de nouvelles applications Android, mais ce n'est pas le seul ! Bien que Google n'autorise pas le téléchargement d'autres magasins d'applications à partir du Google Play Store lui-même, il est tout de même possible de les obtenir en autorisant les applications provenant de sources inconnues. On peut tout à fait utiliser un store d'applications alternatif comme F-Droid[21], un magasin d'applications financés par des dons et dont les applications sont toutes Open Source et gratuites.
+Ces applications ont toutes un point commun : elles peuvent être désinstallées de l'appareil quels que soit les droits dont dispose l'utilisateur. Elles proviennent de diverses sources :
+- **Applications pré-installées** - Certains constructeurs réalisent des partenariats avec des marques et disposent ainsi d'applications comme le pack Office ou divers jeux pré-installés sur leurs appareils.
+- **Applications tierces** - Il s'agit de l'ensemble des applications que l'utilisateur va pouvoir installer en plus de celles déjà présentes sur l'appareil. Le Google Play Store est généralement le lieu de prédilection pour installer de nouvelles applications Android, mais ce n'est pas le seul ! Bien que Google n'autorise pas le téléchargement d'applications en dehors du Google Play Store lui-même, il est tout de même possible de les obtenir **en autorisant les applications provenant de sources inconnues**. On pourra ainsi utiliser un store d'applications alternatif comme F-Droid[21]. Il s'agit un magasin d'applications financé par des dons et dont les applications sont toutes Open Source et gratuites. Également, on peut récupérer le fichier *.apk* d'une application pour l'installer sans passer par un magasin d'applications. En effet, il existe des sites web comme *apkmirror.com* qui constituent une bibliothèque rencensant de très nombreuses applications téléchargeables au format *.apk*.
 
 ## 3) Système de fichiers et points de montage
 
