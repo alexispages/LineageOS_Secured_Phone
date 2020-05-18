@@ -137,43 +137,68 @@ Dans notre cas, le terme *système de fichiers* désigne l'organisation hiérarc
 
 ### Qu'est-ce qu'un point de montage ?
 
-Un point de montage est un dossier permettant d'accéder au contenu d'une partition[25] d'un support de stockage ou simplement à l'intégralité du support de stockage en lui même.
+Un point de montage est un répertoire (dossier) à partir duquel sont accessibles les données se trouvant sous forme d'un système de fichiers sur une partition[25] d'un support de stockage.
+Dans un système Windows, les périphériques de stockage de données et les partitions sont affichés comme des disques indépendants situés au sommet de l'arborescence du système. Sous Unix[49], en revanche, ils sont inclus dans l'arborescence car Unix traite aussi les partitions et périphériques de stockage comme des fichiers.
 
 ### Structure du système de fichiers d'Android
 
-Android utilise plusieurs partitions pour organiser les fichiers et dossiers sur un appareil. On retrouve principalement 6 partitions sur un appareil Android. On donnera ci-dessous la liste des partitions pour le système de fichiers Android. On pourra noter toutefois qu'il peut y avoir d'autres partitions disponibles, différant d'un modèle à l'autre. En outre, les 6 partitions ci-dessous peuvent être trouvées sur n'importe quel appareil Android : 
+Android utilise plusieurs partitions pour organiser les fichiers et dossiers. On retrouve principalement 11 points de montage sur un appareil Android dont on donnera la liste ci-dessous. On pourra noter toutefois qu'il peut y avoir des points de montage supplémentaires différant d'un modèle à l'autre. En outre, les 11 partitions ci-dessous peuvent être trouvées sur n'importe quel appareil Android : 
 
-Schéma des différentes partitions sur Android [26]
+Schéma des différentes partitions sur Android (à refaire)
 
-S'ajoute à ces partitions celle d'un éventuel support de stockage supplémentaire comme un carte SD ce qui nous donne ceci :
+S'ajoute à ces partitions celle d'un éventuel support de stockage supplémentaire comme une carte SD ce qui nous donne ceci :
 
 - **/boot**
 - **/system**
 - **/recovery**
 - **/data**
+- **/storage**
 - **/cache**
-- **/misc**
+- **/sys**
+- **/proc**
+- **/sbin**
+- **/root**
+- **/dev**
 - **/sdcard** ou **/sd-ext** selon les appareil
 
 ### Détail des points de montage sur Android
 
 - #### /boot
-C'est la partition de démarrage d'un appareil Android sans laquelle le système est incapable de démarrer. Elle comprend le noyau Linux utilisé par Android ainsi qu'un *RAMDisk*. Il s'agit d'un disque virtuel, c’est à dire un élément considéré comme un disque de stockage par Android mais qui n’en est pas un. En réalité, ce "disque" est composé d'une partie de la mémoire vive[8] de l'appareil afin d'obtenir un démarrage le plus rapide possible.
+C'est la partition de démarrage d'un appareil Android sans laquelle le système est incapable de démarrer. Elle comprend le noyau Linux utilisé par Android ainsi que sa version compressée (*vmlinuz*). On trouve également un fichier nommé *initrd* qui contient les modules essentiels au bon fonctionnement du noyau (les pilotes réseau, de l'écran, du disque, etc...) ainsi qu'un fichier *ramdisk.img*. Il s'agit d'un disque virtuel, c’est à dire un élément considéré comme un disque de stockage par Android mais qui n’en est pas un. En réalité, ce "disque" est composé d'une partie de la mémoire vive de l'appareil afin d'obtenir un démarrage le plus rapide possible. Il contient notamment le répertoire principal d'Android.
 
 - #### /system
-Comme son nom l'indique, cette partition contient l'intégralité du système d'exploitation Android, à l'exception des deux éléments présentés précédemment. Cela inclut l'interface graphique[28] d'Android et toutes les applications système préinstallées sur l'appareil. L'effacement de cette partition supprimera Android de l'appareil mais ce dernier pourra tout de même démarrer en mode récupération pour installer un nouveau système.
+Cette partition contient le répertoire principal d'Android. Cela inclut l'ensemble des bibliothèques et paquets natifs du framework d'Android comme l'interface graphique[28] et toutes les applications AOSP préinstallées sur l'appareil. Au démarrage, cette partition est montée en lecture seule à partir d'un morceaudu fichier *ramdisk.img*. L'effacement de cette partition supprimera Android de l'appareil mais ce dernier pourra tout de même démarrer en mode recovery pour installer un nouveau système.
 
 - #### /recovery
-La partition de restauration est spécialement conçue pour la sauvegarde. Elle peut être considérée comme une partition de démarrage alternative, permettant d'effectuer des opérations de récupération et de maintenance avancées.
+La partition de restauration est spécialement conçue pour la sauvegarde. Elle peut être considérée comme une partition de démarrage alternative, permettant d'effectuer des opérations de récupération et de maintenance avancées. Sur certains smartphone, après plusieurs tentatives de démarrage échouée, la procédure de démarrage va basculer sur un second fichier *ramdisk.img* qui est propre au mode recovery. C'est à partir de ce fichier que la partition /recovery va être montée.
 
 - #### /data
 Il s'agit de la partition de données utilisateur. Elle contient les données de l'utilisateur comme les contacts, sms, paramètres et toutes les applications Android installées par l'utilisateur. Lorsque l'on effectue une réinitialisation de l'appareil, c'est cette partition est effacée.
 
+- #### /storage
+Cette partition contient également des données utilisateur comme les photos, vidéos, musiques et documents présents sur votre appareil. Tout comme /home/nom_de_l'utilisateur sous Unix, cette partition gèrent plusieurs utilisateurs sous cette forme : /storage/emulated/numéro_utilisateur (0 par défaut).
+
 - #### /cache
 La partition de *cache* est celle où Android stocke les données et les composants d'applications fréquemment utilisés afin d'y accéder plus rapidement. L'effacement du cache n'affecte pas les données personnelles mais élimine simplement les données qui s'y trouvent. Elles se remplira à nouveau en utilisant l'appareil.
 
-- #### /misc
-Cette partition contient divers réglages du système sous forme d'options activées/désactivées. Ces paramètres peuvent inclure le CID (Carrier or Region ID) qui représente l'identifiant de l'opérateur, la configuration USB et certains paramètres matériels, etc... Il s'agit d'une partition importante. En effet, si cette dernière est corrompue ou manquante, plusieurs des fonctions de l'appareil ne fonctionneront pas normalement.
+#### Les partitions héritées des systèmes Unix
+
+Parmi les points de montage d'Android, on retrouve bon nombre d'éléments des systèmes Unix (répertoires /sys, /proc, /dev, /sbin, /root). D'autres, quant à eux, ont été déplacés dans la partition /system. Par exemple /etc est devenu /system/etc. C'est aussi le cas de /bin, /usr, /lib.
+
+- #### /sys
+Ce répertoire contient des informations provenant directement du noyau en grande partie sur les périphériques et drivers. Il possède son propre système de fichiers : *sysfs*  
+
+- #### /proc
+Contient des informations fournies par le noyau sur l'état d'exécution du sytème (quantité de mémoire système, périphériques montés, configurations matérielles, etc...). Il possède son propre système de fichiers : *procfs*
+
+- #### /sbin
+On peut y trouver un ensemble d'outils d'administration du système ne pouvant être utilisés que par un superutilisateur.
+
+- #### /root
+Il s'agit du répertoire personnel de l'utilisateur root. Ce dernier est vide par défaut car Android ne laisse pas facilement la possibilité à un utilisateur de disposer des droits d'administrations sur le système (contrairement à la grande majorité des systèmes Unix et à Windows).
+
+- #### /dev
+Ce répertoire rassemble l'ensemble des fichiers spécifiques aux périphériques embarqués et branchés à l'appareil. Ils sont créés lors de l'installation du système et avec l'exécution du script */dev/MAKEDEV*. Ce répertoire permet d'établir un lien entre le système et un périphérique via une interface.
 
 - #### /sdcard
 Elle ne fait pas partie de la mémoire interne de l'appareil. Il s'agit de l'espace de stockage d'une carte SD que l'utilisateur peut utiliser de la manière qu'il souhaite. On peut y stocker documents, photos, vidéos, données des applications, etc... L'effacer est parfaitement sûr, à condition d'avoir préalablement sauvegarder les données qui y étaient présentes. Si certaines applications envoyaient leurs données sur cet espace de stockage, elles seront perdues.
@@ -335,3 +360,4 @@ https://android.googlesource.com/platform/packages/apps
 - [46] https://miro.medium.com/max/1214/1*\OuWPRO_hIc60mLnFRlhnPA.png
 - [47] https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Android_Q_Beta6_screenshot.png/250px-Android_Q_Beta6_screenshot.png
 - [48] https://miro.medium.com/max/1400/1\*DNmreF9wbTyxnLJFp4djOw.png
+- [49] https://fr.wikipedia.org/wiki/Unix
