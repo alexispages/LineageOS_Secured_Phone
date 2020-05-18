@@ -165,3 +165,21 @@
 - https://digitalcontentnext.org/blog/2018/08/21/google-data-collection-research/
 - https://digitalcontentnext.org/wp-content/uploads/2018/08/DCN-Google-Data-Collection-Paper.pdf
 - https://apkpure.com/google-services-framework/com.google.android.gsf
+
+## Consulté le 18 Mai
+
+### Système de fichiers et points de montage
+- https://fr.wikipedia.org/wiki/Point_de_montage
+- https://fr.wikipedia.org/wiki/Unix
+- https://source.android.com/devices/bootloader/partitions-images
+- https://source.android.com/devices/bootloader/flashing-updating#a-b-updates
+- https://source.android.com/devices/bootloader/system-as-root
+- https://stackoverflow.com/questions/26801895/the-different-between-android-foldersbin-xbin-sbin/26802239
+- http://www.tldp.org/LDP/sag/html/dev-fs.html
+- https://www.thegeekdiary.com/understanding-the-sysfs-file-system-in-linux/
+- https://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html
+- http://www.linfo.org/sbin.html
+- https://wiki.smartphonefrance.info/arborescence-android.ashx
+
+
+
