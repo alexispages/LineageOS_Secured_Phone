@@ -100,6 +100,31 @@ L'outil le plus redoutable dans cette stratégie de récolte de données reste *
 
 Ceci nous amène au point le plus important lorsque l'on installe LineageOS : **il n'y a plus de *GSF***. En effet, nativement, LineageOS ne dispose pas des services de Google et met un point d'honneur à ne pas espionner les utilisateurs de son système d'exploitation et revendre leurs données aux plus offrants.
 
+## 3) Comment remplacer les services Google ?
+
+### a) Impact des services Google
+
+Les services Google, bien qu'ils constituent un réel obstacle à la mise en place de notre "smartphone libre" jouent un rôle essentiel pour le bon fonctionnement de très nombreuses applications. Sans services Google, l'ensemble des applications de Banking ou de navigation ne pourront pas fonctionner. Il est tout à fait possible de passer par leurs équivalents disponible sur le web. Néanmoins, toutes les applications ne disposent pas d'une version accessible depuis le web. De plus, certaines applications populaires, malgré le fait qu’elles soient open source, nécessitent aujourd’hui l’installation des bibliothèques propriétaires de Google.
+
+### b) La solution MicroG
+
+[8] Logo MicroG
+
+**MicroG GmsCore** est une implémentation libre et ouverte du framework des Google Play Services. Il permet aux applications qui font appel à l'API propriétaire de Google de fonctionner sur des variantes d'*AOSP* comme *LineageOS* ou *Replicant*. C'est un outil puissant pour reprendre la main sur ses données personnelles tout en continuant de profiter des fonctionnalités de base d'Android. En effet, avec cette alternative, il n'y a nullement besoin de disposer d'un compte Google sur son smartphone. C'est cet élément qui est fondamental car même si certaines fonctionnalités nécessitent de faire appel aux serveurs de Google, les données envoyées ne permettront pas de vous identifier et de faire l'objet d'un traitement quelconque.
+
+### c) Les avantages apportés par MicroG
+
+Voici la liste des fonctionnalités apportées par MicroG :
+- **Remplacement des Google Play Services** pour la quasi-totalité des applications du Google Play Store (certaines applications ne fonctionne pas correctement).
+- **Fournit un service de localisation en ligne/hors ligne** avec le module Unified Network Location Provider (UnifiedNlp) qui gère les appels des applications vers le Network Location Provider de Google. Pour remplacer l'outil de Google, on peut par exemple installer le Mozilla Location Service (MLS) qui est un service ouvert permettant aux appareils de déterminer leur emplacement en fonction de la présence d'infrastructures réseau comme les balises Bluetooth, les antennes de téléphonie cellulaire et les points d'accès WiFi. Ce service de localisation en réseau complète les systèmes de navigation par satellite tels que l'A-GPS.
+- **Peu gourmand en ressources** (batterie, mémoire et processeur) car très peu de données sont véhiculées vers les serveurs de Google (seuls quelques services nécessitent un passage par ces serveurs).
+- **Pas de publicité ciblée** car pas de tracker d'activité d'installé.
+- **Entièrement libre et ouvert** contrairement aux services de Google qui éloignent Android de sa vocation à être Open Source.
+
+### d) Compatiblité avec LineageOS
+
+Afin de pouvoir utiliser MicroG, notre système Android doit supporter le **Signature Spoofing** qui permet à GmsCore de simuler l'existence du Play Service officiel pour les applications qui appellent l'API de Google. Or, ce n'est pas le cas avec LineageOS. Néanmoins, il existe une version nommée *"LineageOS for microG"* qui implémente directement toutes les fonctionnalités de MicroG au sein de LineageOS. C'est cette version que nous allons installer par la suite et qui ne nécessite aucune modification particulière lors de l'installation par rapport à une version classique de LineageOS.
+
 # Lexique + Images
 - [1] https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/LineageOS_Logo.svg/512px-LineageOS_Logo.svg.png
 - [2] https://fr.wikipedia.org/wiki/GitHub
@@ -108,3 +133,4 @@ Ceci nous amène au point le plus important lorsque l'on installe LineageOS : **
 - [5] https://fr.wikipedia.org/wiki/Bug_(informatique)
 - [6] https://apkpure.com/google-services-framework/com.google.android.gsf
 - [7] https://digitalcontentnext.org/wp-content/uploads/2018/08/DCN-Google-Data-Collection-Paper.pdf
+- [8] https://microg.org/img/microg_full_colored.svg
