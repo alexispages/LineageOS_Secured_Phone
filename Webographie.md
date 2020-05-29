@@ -186,3 +186,18 @@
 ### Système de fichiers et points de montage
 - https://fr.wikipedia.org/wiki/Point_de_montage
 - https://fr.wikipedia.org/wiki/Unix
+
+## Consulté le 29 Mai
+
+### La solution MicroG
+
+- https://microg.org/
+- https://microg.org/img/microg_full_colored.svg
+- https://github.com/microg/android_packages_apps_GmsCore/wiki
+- https://wiki.zaclys.com/index.php/Installation_de_microG
+- https://community.e.foundation/t/microg-and-privacy/11988
+- https://github.com/microg/android_packages_apps_UnifiedNlp
+- https://f-droid.org/fr/packages/org.microg.nlp.backend.ichnaea/
+- https://lineage.microg.org/
+- https://download.lineage.microg.org/
+
