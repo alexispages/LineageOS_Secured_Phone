@@ -190,7 +190,6 @@
 ## Consulté le 29 Mai
 
 ### La solution MicroG
-
 - https://microg.org/
 - https://microg.org/img/microg_full_colored.svg
 - https://github.com/microg/android_packages_apps_GmsCore/wiki
@@ -201,3 +200,9 @@
 - https://lineage.microg.org/
 - https://download.lineage.microg.org/
 
+## Consulté le 30 Mai
+
+### adb et fastboot
+- https://wiki.lineageos.org/devices/piccolo/install
+- https://wiki.lineageos.org/adb_fastboot_guide.html
+- https://dl.google.com/android/repository/platform-tools-latest-linux.zip
