@@ -125,6 +125,30 @@ Voici la liste des fonctionnalités apportées par MicroG :
 
 Afin de pouvoir utiliser MicroG, notre système Android doit supporter le **Signature Spoofing** qui permet à GmsCore de simuler l'existence du Play Service officiel pour les applications qui appellent l'API de Google. Or, ce n'est pas le cas avec LineageOS. Néanmoins, il existe une version nommée *"LineageOS for microG"* qui implémente directement toutes les fonctionnalités de MicroG au sein de LineageOS. C'est cette version que nous allons installer par la suite et qui ne nécessite aucune modification particulière lors de l'installation par rapport à une version classique de LineageOS.
 
+## 4) ADB et Fastboot
+
+### a) Qu'est-ce que ADB et Fastboot ?
+
+L'**Android Debug Bridge (adb)** est un outil de développement qui facilite la communication entre un appareil Android et un ordinateur personnel. Cette communication se fait le plus souvent par un câble USB, mais les connexions Wi-Fi sont également prises en charge.
+**Fastboot** est un outil inclu dans le paquet Android SDK utilisé principalement pour modifier le système de fichiers flash via une connexion USB depuis l'ordinateur hôte.
+
+### b) Installation
+
+La procédure d'installation va être réalisée à partir d'Arch Linux. Selon le système d'exploitation utilisé, les étapes peuvent être différentes.
+Dans un premier temps, on télécharge l'archive d'installation à l'adresse suivante : <br/>
+https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+Dans notre répertoire personnel, on crée le dossier *adb-fastboot* dans lequel nous allons extraire le contenu de l'archive :
+```
+$ mkdir ~/adb-fastboot
+$ unzip platform-tools_r30.0.1-linux.zip -d ~/adb-fastboot/
+```
+On édite le fichier *~/.bash_profile* en y ajoutant les lignes suivantes :
+```
+if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
+ export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
+fi
+```
+
 # Lexique + Images
 - [1] https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/LineageOS_Logo.svg/512px-LineageOS_Logo.svg.png
 - [2] https://fr.wikipedia.org/wiki/GitHub
