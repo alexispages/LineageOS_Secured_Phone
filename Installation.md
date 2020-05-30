@@ -129,13 +129,13 @@ Afin de pouvoir utiliser MicroG, notre système Android doit supporter le **Sign
 
 ### a) Qu'est-ce que ADB et Fastboot ?
 
-L'**Android Debug Bridge (adb)** est un outil de développement qui facilite la communication entre un appareil Android et un ordinateur personnel. Cette communication se fait le plus souvent par un câble USB, mais les connexions Wi-Fi sont également prises en charge.
+L'**Android Debug Bridge (adb)** est un outil de développement qui facilite la communication entre un appareil Android et un ordinateur personnel. Cette communication se fait le plus souvent par un câble USB, mais les connexions Wi-Fi sont également prises en charge. Dans notre cas, nous allons utiliser le câble USB pour dialoguer avec le smartphone.
 **Fastboot** est un outil inclu dans le paquet Android SDK utilisé principalement pour modifier le système de fichiers flash via une connexion USB depuis l'ordinateur hôte.
 
 ### b) Installation
 
 La procédure d'installation va être réalisée à partir d'Arch Linux. Selon le système d'exploitation utilisé, les étapes peuvent être différentes.
-Dans un premier temps, on télécharge l'archive d'installation à l'adresse suivante : <br/>
+Dans un premier temps, on télécharge l'archive[9] d'installation à l'adresse suivante : <br/>
 https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 Dans notre répertoire personnel, on crée le dossier *adb-fastboot* dans lequel nous allons extraire le contenu de l'archive :
 ```
@@ -148,6 +148,70 @@ if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
  export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
 fi
 ```
+On relance notre session afin de prendre en compte les changements opérés dans le fichier *~/.bash_profile*.
+
+### c) Règles udev
+
+Le répertoire */dev* contenait tous les fichiers correspondant à tous les périphériques possibles et imaginables que l'on pouvait trouver dans une configuration matérielle. De ce fait, il était très volumineux. Devfs a été créé pour simplifier cette utilisation, mais ce système a montré ses limites lorsque l'on se trouve face à des situations complexes.
+**Udev** est ainsi devenu le nouveau système pour gérer le répertoire */dev*.
+
+Il est devenu possible d'éditer des **règles udev** flexibles et très puissantes. Voici quelques exemples de ce qu'il est possible de faire :
+- changer le nom assigné par défaut à un périphérique
+- donner un nom alternatif ou permanent à un périphérique en créant un lien symbolique
+- nommer un périphérique en fonction de la sortie d'un programme
+- changer les permissions et les propriétés d'un périphérique
+- lancer un script quand un périphérique est créé ou supprimé (en général pour un périphérique qui se branche à chaud, comme l'USB)
+- renommer les interfaces réseau
+
+Dans notre cas, il existe des règles udev spécifiques à Android : <br/>
+https://github.com/M0Rf30/android-udev-rules#installation
+Utilisant Arch Linux, je dois me référer à la page web suivante : <br/>
+https://wiki.archlinux.org/index.php/Android_Debug_Bridge
+
+Premièrement, on installe le paquet *android-udev* :
+```
+# pacman -S android-udev
+```
+On active le mode développeur sur notre smartphone en allant dans *Paramètres* > *À propos du téléphone*. On tapote ensuite 7 fois sur le *Numéro de build*.
+Une fois le mode développeur activé, on se rend dans *Options pour les développeurs* puis on active le *Débogage USB*.
+On vérifie ensuite si **adb** reconnait notre smartphone :
+```
+# adb devices
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+List of devices attached
+PS116986        unauthorized
+```
+On remarque que le statut de notre smartphone est *unauthorized*. Dans le même temps, une notification sur le smartphone nous demandant d'**autoroiser le débogage USB** ("USB debugging" en anglais). On appuie sur *OK* et on vérifie à nouveau le statut de notre smartphone :
+```
+# adb devices
+List of devices attached
+PS116986        device
+```
+Notre smartphone est bien reconnu par adb car la mention *device* est apparue. Nous allons maintenant pouvoir interagir avec le smartphone directement depuis l'ordinateur (notamment pour installer les composants logiciels souhaités).
+
+## 5) Déverrouillage du chargeur d'amorçage
+
+Attention, cette partie va effacer la partition contenant les données utilisateur du smartphone !! 
+Pour effectuer cette action, on se rend dans *Paramètres* > *Options pour les développeurs* puis on active le *Déverrouillage OEM*. Ceci va nous permettre de tester le **mode fastboot**. Pour entrer dans ce mode, nous allons éteindre le smartphone. Une fois l'appareil éteint, on maintient les boutons *Volume bas* et *Power*. Lorsque l'appareil vibre, on relâche la touche *Power*, on attend une seconde, puis on relâche la touche *Volume bas*.
+On vérifie au niveau du PC que l'appareil est bien détecté :
+```
+# fastboot devices
+PS116986        fastboot
+```
+Nous allons maintenant déverrouiller le bootloader avec la commande suivante :
+```
+# fastboot oem unlock
+                                                   FAILED (remote: 'Need wipe userdata. Do 'fastboot oem unlock-go'')
+fastboot: error: Command failed
+```
+On nous indique qu'il faut également effacer les données utilisateur en utilisant cette commande :
+```
+# fastboot oem unlock-go
+                                                   OKAY [  0.005s]
+Finished. Total time: 0.005s
+```
+On redémarre ensuite le smartphone et on remarque que celui-ci a été rétabli avec les paramètres d'usine.
 
 # Lexique + Images
 - [1] https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/LineageOS_Logo.svg/512px-LineageOS_Logo.svg.png
@@ -158,3 +222,4 @@ fi
 - [6] https://apkpure.com/google-services-framework/com.google.android.gsf
 - [7] https://digitalcontentnext.org/wp-content/uploads/2018/08/DCN-Google-Data-Collection-Paper.pdf
 - [8] https://microg.org/img/microg_full_colored.svg
+- [9] https://fr.wikipedia.org/wiki/Archive_%28informatique%29
