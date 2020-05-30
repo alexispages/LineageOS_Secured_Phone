@@ -206,3 +206,7 @@
 - https://wiki.lineageos.org/devices/piccolo/install
 - https://wiki.lineageos.org/adb_fastboot_guide.html
 - https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+- https://fr.wikipedia.org/wiki/Archive_%28informatique%29
+- https://doc.ubuntu-fr.org/udev
+- https://github.com/M0Rf30/android-udev-rules#installation
+- https://wiki.archlinux.org/index.php/Android_Debug_Bridge
