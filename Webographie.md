@@ -210,3 +210,13 @@
 - https://doc.ubuntu-fr.org/udev
 - https://github.com/M0Rf30/android-udev-rules#installation
 - https://wiki.archlinux.org/index.php/Android_Debug_Bridge
+
+## Consulté le 31 Mai
+
+### Installation d'un recovery alternatif
+- https://wiki.lineageos.org/devices/piccolo/install
+- https://dl.twrp.me/piccolo/
+- http://www.prodigemobile.com/tutoriel/installer-recovery-twrp-android/
+- https://fr.wikipedia.org/wiki/Image_disque
+- https://dl.twrp.me/piccolo/twrp-3.3.1-0-piccolo.img.html
+- https://fr.wikipedia.org/wiki/Chiffrement
