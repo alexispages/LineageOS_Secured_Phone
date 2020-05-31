@@ -136,7 +136,7 @@ L'**Android Debug Bridge (adb)** est un outil de développement qui facilite la 
 
 La procédure d'installation va être réalisée à partir d'Arch Linux. Selon le système d'exploitation utilisé, les étapes peuvent être différentes.
 Dans un premier temps, on télécharge l'archive[9] d'installation à l'adresse suivante : <br/>
-https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+https://dl.google.com/android/repository/platform-tools-latest-linux.zip <br/>
 Dans notre répertoire personnel, on crée le dossier *adb-fastboot* dans lequel nous allons extraire le contenu de l'archive :
 ```
 $ mkdir ~/adb-fastboot
@@ -164,7 +164,7 @@ Il est devenu possible d'éditer des **règles udev** flexibles et très puissan
 - renommer les interfaces réseau
 
 Dans notre cas, il existe des règles udev spécifiques à Android : <br/>
-https://github.com/M0Rf30/android-udev-rules#installation
+https://github.com/M0Rf30/android-udev-rules#installation <br/>
 Utilisant Arch Linux, je dois me référer à la page web suivante : <br/>
 https://wiki.archlinux.org/index.php/Android_Debug_Bridge
 
@@ -173,7 +173,13 @@ Premièrement, on installe le paquet *android-udev* :
 # pacman -S android-udev
 ```
 On active le mode développeur sur notre smartphone en allant dans *Paramètres* > *À propos du téléphone*. On tapote ensuite 7 fois sur le *Numéro de build*.
+
+[capture d'écran Numéro de build]
+
 Une fois le mode développeur activé, on se rend dans *Options pour les développeurs* puis on active le *Débogage USB*.
+
+[capture d'écran débogage USB]
+
 On vérifie ensuite si **adb** reconnait notre smartphone :
 ```
 # adb devices
@@ -182,7 +188,11 @@ On vérifie ensuite si **adb** reconnait notre smartphone :
 List of devices attached
 PS116986        unauthorized
 ```
-On remarque que le statut de notre smartphone est *unauthorized*. Dans le même temps, une notification sur le smartphone nous demandant d'**autoroiser le débogage USB** ("USB debugging" en anglais). On appuie sur *OK* et on vérifie à nouveau le statut de notre smartphone :
+On remarque que le statut de notre smartphone est *unauthorized*.
+
+[capture d'écran Autoriser le débogage USB ?]
+
+Dans le même temps, une notification sur le smartphone nous demandant d'**autoroiser le débogage USB** ("USB debugging" en anglais). On appuie sur *OK* et on vérifie à nouveau le statut de notre smartphone :
 ```
 # adb devices
 List of devices attached
@@ -193,7 +203,11 @@ Notre smartphone est bien reconnu par adb car la mention *device* est apparue. N
 ## 5) Déverrouillage du chargeur d'amorçage
 
 Attention, cette partie va effacer la partition contenant les données utilisateur du smartphone !! 
-Pour effectuer cette action, on se rend dans *Paramètres* > *Options pour les développeurs* puis on active le *Déverrouillage OEM*. Ceci va nous permettre de tester le **mode fastboot**. Pour entrer dans ce mode, nous allons éteindre le smartphone. Une fois l'appareil éteint, on maintient les boutons *Volume bas* et *Power*. Lorsque l'appareil vibre, on relâche la touche *Power*, on attend une seconde, puis on relâche la touche *Volume bas*.
+Pour effectuer cette action, on se rend dans *Paramètres* > *Options pour les développeurs* puis on active le *Déverrouillage OEM*.
+
+[capture d'écran Déverrouillage OEM]
+
+Ceci va nous permettre de tester le **mode fastboot**. Pour entrer dans ce mode, nous allons éteindre le smartphone. Une fois l'appareil éteint, on maintient les boutons *Volume bas* et *Power*. Lorsque l'appareil vibre, on relâche la touche *Power*, on attend une seconde, puis on relâche la touche *Volume bas*.
 On vérifie au niveau du PC que l'appareil est bien détecté :
 ```
 # fastboot devices
@@ -213,6 +227,127 @@ Finished. Total time: 0.005s
 ```
 On redémarre ensuite le smartphone et on remarque que celui-ci a été rétabli avec les paramètres d'usine.
 
+## 6) Installation d'un recovery alternatif
+
+### a) Qu'est-ce qu'un recovery alternatif
+
+Les **recovery alternatifs** (*recovery custom* en anglais) offrent différentes options pour réaliser des opérations de maintenance sur un appareil Android. Grâce à eux, on peut par exemple effacer la partition cache, changer de système d'exploitation, créer des points de restauration, réinitialiser son smartphone ou supprimer les données restées dans la mémoire du téléphone.
+
+Chaque fabricant de smartphone propose son propre mode de récupération. Toutefois, on trouve sur le net de très nombreux recovery alternatifs. Ces derniers permettent de lever les interdictions ou restrictions imposées par certains constructeurs. De plus, leurs interfaces tactiles offrent un confort d’utilisation optimal et simplifient grandement les tâches les plus complexes.
+
+***TWRP*** (*Team Win Recovery Project*) développé par Ethan Yonker figure parmi les *recovery custom* les plus populaires dans le monde notamment grâce à sa facilité d’utilisation et sa large compatibilité avec la grande majorité des appareils Android. Les différents menus y sont directement accessibles via l’écran tactile.
+
+### b) Installation de TWRP
+
+Afin de procéder à l'installation de TWRP, il nous faut récupérer l'image[10] correspondant à notre appareil : **BQ Aquaris M5** (*piccolo*) disponible à l'adresse suivante : <br/>
+https://dl.twrp.me/piccolo/ <br/>
+On sélectionne ensuite l'image la plus récente (***twrp-3.3.1-0-piccolo.img***) : <br/>
+https://dl.twrp.me/piccolo/twrp-3.3.1-0-piccolo.img.html <br/>
+On clique sur *Download twrp-3.3.1-0-piccolo.img* pour lancer le téléchargement. <br/>
+Après avoir téléchargé ce type de fichier, il est préférable d'en vérifier l’intégrité pour être sûr et certain qu’il est identique à l’original et non corrompu. Dans ce cas, il faut calculer la somme de contrôle (*checksum* en anglais) ou "empreinte" de ce fichier et la comparer avec celle du fichier original.
+Pour récupérer l'empreinte originale, on clique sur *sha256 for twrp-3.3.1-0-piccolo.img*. On affiche le contenu du fichier :
+```
+cat ~/twrp-3.3.1-0-piccolo.img.sha256
+5efb0ec6aa47caaf441c87ff6f892e7d8abd6f78cc92ff870bab98796250d29c  twrp-3.3.1-0-piccolo.img
+```
+Le premier champ contient l'empreinte du fichier original. <br/>
+On calcule la somme de contrôle de l'image *twrp-3.3.1-0-piccolo.img* que nous avons téléchargée :
+```
+$ sha256sum ~/twrp-3.3.1-0-piccolo.img
+5efb0ec6aa47caaf441c87ff6f892e7d8abd6f78cc92ff870bab98796250d29c  ~/twrp-3.3.1-0-piccolo.img
+```
+Le premier champ contient l'empreinte du fichier téléchargé. <br/>
+On compare les deux empreinte obtenue :
+```
+$ [ $(sha256sum ~/twrp-3.3.1-0-piccolo.img | awk '{print $1}') == $(cat ~/twrp-3.3.1-0-piccolo.img.sha256 | awk '{print $1}') ]; echo $?
+0
+```
+La commande retourne **0** ce qui signifie que les deux empreintes sont identiques !
+On redémarre le smartphone en ***mode fastboot***. Rappel : On éteind le smartphone. Une fois l'appareil éteint, on maintient les boutons *Volume bas* et *Power*. Lorsque l'appareil vibre, on relâche la touche *Power*, on attend une seconde, puis on relâche la touche *Volume bas*. Sur notre smartphone, on obtient ceci à l'écran :
+
+[Photo Écran mode fastboot]
+
+On vérifie au niveau du PC que l'appareil est bien détecté :
+```
+# fastboot devices
+PS116986        fastboot
+```
+On installe TWRP avec la commande suivante :
+```
+# fastboot flash recovery /home/apages/twrp-3.3.1-0-piccolo.img
+Sending 'recovery' (22794 KB)                      OKAY [  0.719s]
+Writing 'recovery'                                 OKAY [  0.618s]
+Finished. Total time: 1.342s
+```
+On démarre notre smartphone en mode recovery :
+```
+# fastboot boot twrp-3.3.1-0-piccolo.img
+Sending 'boot.img' (22794 KB)                      OKAY [  0.719s]
+Booting                                            OKAY [  0.023s]
+Finished. Total time: 0.766s
+```
+On vérifie que l'on se trouve bien dans ce mode :
+```
+# adb devices
+List of devices attached
+PS116986        recovery
+```
+Sur l'écran du smartphone on obtient ceci :
+
+[Photo Keep System Read only ?]
+
+Il s'agit d'un avertissement pour nous prévenir que le système de fichiers va être modifié suite à l'utilisation de TWRP. On coche *Never show this screen during boot again* afin que ce message ne s'affiche plus lors de chaque démarrage en mode recovery puis on glisse de la gauche vers la droite les 3 trois flèches blanches. On obtient ceci :
+
+[Photo menu principal TWRP]
+
+## 7) Installation de *LineageOS for microG*
+
+On sélectionne *Wipe* (*Effacer* en français).
+
+[Photo Wipe menu]
+
+On clique sur *Format Data*, on tape *yes* au clavier et on valide :
+
+[Photo Format Data]
+
+Cette étape va permettre de supprimer le chiffrement[11] des données de l'appareil et d'effacer tous les fichiers stockés dans la mémoire interne. On clique ensuite sur *Back* et on revient sur le menu *Wipe*. On appuie sur *Advanced Wipe* (*Effacement avancé* en français) et on sélectionne les partitions à effacer (*cache* et *System*) :
+
+[Photo Advanced Wipe]
+
+On glisse de la gauche vers la droite les 3 trois flèches blanches pour appliquer. On revient sur le menu principal.
+Sur notre PC on repère le dépot de *LineageOS for microG* correspondant à notre appareil (*piccolo*) : <br/>
+https://download.lineage.microg.org/piccolo/ <br/>
+On télécharge l'image la plus récente *lineage-14.1-20190303-microG-piccolo.zip*. Comme pour TWRP, nous allons vérifier que l'empreinte est identique à celle du fichier original contenu dans le fichier *lineage-14.1-20190303-microG-piccolo.zip.sha256sum*. <br/>
+```
+$ [ $(sha256sum ~/lineage-14.1-20190303-microG-piccolo.zip | awk '{print $1}') == $(cat ~/lineage-14.1-20190303-microG-piccolo.zip.sha256sum | awk '{print $1}') ]; echo $?
+0
+```
+La commande retourne **0** ce qui signifie que les deux empreintes sont identiques !
+Nous allons désormais charger l'image de *LineageOS for microG* sur notre appareil. On revient sur le menu principal. On sélectionne *Advanced* puis *ADB Sideload* :
+
+[Photo Advanced menu]
+
+On glisse de la gauche vers la droite les 3 trois flèches blanches pour démarrer le chargement depuis le PC. 
+
+[Photo ADB Sideload]
+
+Avec la commande suivante, on sélectionne le fichier à charger sur l'appareil.
+```
+# adb sideload /home/apages/lineage-14.1-20190303-microG-piccolo.zip
+Total xfer: 1.00x    
+```
+[Photo pendant l'installation]   [Photo installation terminée]
+
+On redémarre ensuite notre appareil :
+```
+# adb reboot
+```
+Après quelques minutes d'écran de chargement de *LineageOS*, on obtient ceci :
+
+[Photo Lineage Premier démarrage]
+
+L'installation est désormais terminée ! Le paramétrage de l'appareil sera effectué dans la partie IV.
+
 # Lexique + Images
 - [1] https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/LineageOS_Logo.svg/512px-LineageOS_Logo.svg.png
 - [2] https://fr.wikipedia.org/wiki/GitHub
@@ -223,3 +358,5 @@ On redémarre ensuite le smartphone et on remarque que celui-ci a été rétabli
 - [7] https://digitalcontentnext.org/wp-content/uploads/2018/08/DCN-Google-Data-Collection-Paper.pdf
 - [8] https://microg.org/img/microg_full_colored.svg
 - [9] https://fr.wikipedia.org/wiki/Archive_%28informatique%29
+- [10] https://fr.wikipedia.org/wiki/Image_disque
+- [11] https://fr.wikipedia.org/wiki/Chiffrement
