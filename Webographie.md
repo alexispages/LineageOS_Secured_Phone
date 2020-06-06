@@ -220,3 +220,28 @@
 - https://fr.wikipedia.org/wiki/Image_disque
 - https://dl.twrp.me/piccolo/twrp-3.3.1-0-piccolo.img.html
 - https://fr.wikipedia.org/wiki/Chiffrement
+
+## Consulté le 4 Juin
+
+### Paquets nécessaires au build
+- https://wiki.lineageos.org/devices/piccolo/build
+
+## Consulté le 5 Juin
+
+### Paquets nécessaires au build
+- https://wiki.lineageos.org/devices/piccolo/build
+- https://installvirtual.com/install-java-8-on-debian-10-buster/
+
+## Consulté le 6 Juin
+
+### Extraction des blobs propriétaires
+- https://wiki.lineageos.org/devices/piccolo/build
+- https://en.wikipedia.org/wiki/Proprietary_device_driver
+- https://wiki.lineageos.org/extracting_blobs_from_zips.html
+- https://wiki.lineageos.org/extracting_blobs_from_zips.html#extracting-proprietary-blobs-from-block-based-otas
+- https://wiki.lineageos.org/extracting_blobs_from_zips.html#extracting-proprietary-blobs-from-file-based-otas
+- https://wiki.lineageos.org/extracting_blobs_from_zips.html#extracting-proprietary-blobs-from-payload-based-otas
+- https://aws.amazon.com/fr/caching/
+- https://ccache.dev/
+- https://source.android.com/setup/build/jack
+- https://fr.wikipedia.org/wiki/Cha%C3%AEne_d%27outils_Devops
