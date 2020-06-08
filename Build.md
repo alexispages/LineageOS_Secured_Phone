@@ -29,7 +29,7 @@ On installera donc les paquets de cette manière :
 ```
 # apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
 ```
-Il est également nécessaire d'installer le kit de développement Java (*Java OpenJDK*). Dans notre cas, nous souhaitons créer un build de LineageOS 14.1. Il nous faudra donc installer *OpenJDK 1.8*. On ajoute le dépôt adopt OpenJDK :
+Il est également nécessaire d'installer le kit de développement Java (*Java OpenJDK*). Dans notre cas, nous souhaitons créer un build de LineageOS 14.1. Il nous faudra donc installer *OpenJDK 1.8*. On ajoute le dépôt *adoptopenJDK* :
 ```
 $ wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
 # add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
@@ -38,10 +38,37 @@ On installe *OpenJDK 1.8* :
 ```
 # apt update
 # apt install adoptopenjdk-8-hotspot
+```
+Sur la dernière version de *Debian*, *Openjdk-11* est installé et utilisé par défaut. Or, nous souhaitons utiliser *Openjdk-8*. Pour cela, on entre la commande suivante :
+```
+# update-alternatives --config java
+Il existe 2 choix pour l'alternative java (qui fournit /usr/bin/java).
+
+  Sélection   Chemin                                              Priorité  État
+------------------------------------------------------------
+* 0            /usr/lib/jvm/java-11-openjdk-amd64/bin/java          1111      mode automatique
+  1            /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java   1081      mode manuel
+  2            /usr/lib/jvm/java-11-openjdk-amd64/bin/java          1111      mode manuel
+
+Appuyez sur <Entrée> pour conserver la valeur par défaut[*] ou choisissez le numéro sélectionné :1
+update-alternatives: utilisation de « /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java » pour fournir « /usr/bin/java » (java) en mode manuel
+```
+Nous allons donc choisir le numéro 1 pour indiquer au système que l'on souhaite utiliser *Openjdk-8*. On vérifie la version utilisée par le système :
+```
 $ java -version
-openjdk version "1.8.0_222"
-OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_222-b10)
-OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.222-b10, mixed mode)
+openjdk version "1.8.0_252"
+OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_252-b09)
+OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.252-b09, mixed mode)
+```
+Enfin, nous devons définir la variable Java Home Environment pour pouvoir utiliser Java dans certains contexte. Pour cela, nous allons ajouter la ligne suivante au fichier ~/.bash_profile :
+```
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+```
+On applique les changements et on effectue une rapide vérification :
+```
+$ source ~/.bash_profile
+$ echo $JAVA_HOME
+/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 ```
 
 ## 3) Création des répertoires de build
