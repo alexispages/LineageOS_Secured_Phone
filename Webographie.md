@@ -245,3 +245,13 @@
 - https://ccache.dev/
 - https://source.android.com/setup/build/jack
 - https://fr.wikipedia.org/wiki/Cha%C3%AEne_d%27outils_Devops
+
+## Consulté le 9 Juin
+
+### Compatibilité des appareils
+- https://wiki.lineageos.org/devices/
+- https://forum.xda-developers.com/lineage
+- https://www.lineageosrom.com/
+- http://www.lineageosdownloads.com/
+- https://github.com/search?q=lineageos+build&type=
+- https://www.xda-developers.com/huawei-honor-request-bootloader-unlock-code/
