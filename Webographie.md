@@ -255,3 +255,10 @@
 - http://www.lineageosdownloads.com/
 - https://github.com/search?q=lineageos+build&type=
 - https://www.xda-developers.com/huawei-honor-request-bootloader-unlock-code/
+
+## Consulté le 11 Juin
+
+### Configuration de MicroG
+- https://wiki.zaclys.com/index.php/Installation_de_microG
+- https://pled.fr/?p=11272
+- https://fr.wikipedia.org/wiki/G%C3%A9ocodage
