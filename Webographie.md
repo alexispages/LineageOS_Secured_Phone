@@ -262,3 +262,11 @@
 - https://wiki.zaclys.com/index.php/Installation_de_microG
 - https://pled.fr/?p=11272
 - https://fr.wikipedia.org/wiki/G%C3%A9ocodage
+
+## Consulté le 12 Juin
+
+### Services Google
+- http://papy-tux.legtux.org/doc1208/index.html#mozTocId735851
+- https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications
+- https://www.reddit.com/r/MicroG/comments/b3poti/apps_wont_register_for_gcmfcm_says_current_state/
+- https://f-droid.org/fr/packages/com.aurora.store/
