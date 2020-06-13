@@ -270,3 +270,10 @@
 - https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications
 - https://www.reddit.com/r/MicroG/comments/b3poti/apps_wont_register_for_gcmfcm_says_current_state/
 - https://f-droid.org/fr/packages/com.aurora.store/
+
+## Consulté le 13 Juin
+
+### Services Google
+- https://developer.android.com/training/safetynet/attestation
+- https://www.nowsecure.com/blog/2017/08/03/android-apps-google-safetynet-attestation-api/
+- https://f-droid.org/fr/packages/com.aurora.store/
