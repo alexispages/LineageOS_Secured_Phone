@@ -277,3 +277,9 @@
 - https://developer.android.com/training/safetynet/attestation
 - https://www.nowsecure.com/blog/2017/08/03/android-apps-google-safetynet-attestation-api/
 - https://f-droid.org/fr/packages/com.aurora.store/
+
+## Consulté le 14 Juin
+
+### ADB et Fastboot
+- https://fr.wikipedia.org/wiki/Distribution_Linux
+- http://storage.googleapis.com/play_public/supported_devices.html
